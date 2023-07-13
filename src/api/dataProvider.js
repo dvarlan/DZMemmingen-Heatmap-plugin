@@ -56,7 +56,8 @@ export default class dataProvider {
                     json.features.forEach(station => {
                         if (station.properties['properties/activeFlag'] === 'True') {
                             
-                            let convertedPoint = this.covertLonLatToXY(station.geometry.coordinates[1], station.geometry.coordinates[0], heatmap.getInstance().rawHeatmapBouningBox, heatmap.getInstance().canvasWidth, heatmap.getInstance().canvasHeight);
+                            const heatmapInstance = heatmap.getInstance();
+                            let convertedPoint = this.covertLonLatToXY(station.geometry.coordinates[1], station.geometry.coordinates[0], heatmapInstance.rawHeatmapBouningBox, heatmapInstance.canvasWidth, heatmapInstance.canvasHeight);
 
                             const stationData = {
                                 x: convertedPoint[0],
@@ -72,32 +73,6 @@ export default class dataProvider {
             });
         console.log("[DEBUG] Heatmap Data");
         console.log(this.heatmapData);
-    }
-
-    getDataForInternalHeatmap() {
-        const heatmapInstance = heatmap.getInstance();
-
-        const data = [];
-        const heatmapSource = {
-            min: this.minRandomValue,
-            max: this.maxRandomValue,
-            data: data
-        };
-
-        this.pointData.forEach(point => {
-
-            let convertedPoint = this.covertLonLatToXY(point.lat, point.lon, heatmapInstance.rawHeatmapBouningBox, heatmapInstance.canvasWidth, heatmapInstance.canvasHeight);
-
-            data.push({
-                x: convertedPoint[0],
-                y: convertedPoint[1],
-                value: this.getRandomTempValue() //TODO: Temp Mock.
-            });
-        });
-
-        console.log("[DEBUG] Internal Heatmap Source: ");
-        console.log(heatmapSource);
-        return heatmapSource;
     }
 
     getPointsAsCesiumDataSource() {

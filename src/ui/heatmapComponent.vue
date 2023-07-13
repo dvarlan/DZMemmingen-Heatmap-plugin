@@ -10,7 +10,7 @@
         <button class="vcm-btn-project-list" @click="drawStations3D">Add Stations</button>
         <br>
         <br>
-        <button class="vcm-btn-project-list" @click="drawInternal3DHeatmap">Draw internal Heatmap</button>
+        <button class="vcm-btn-project-list" @click="drawHeatmap">Draw Heatmap</button>
         <br>
         <br>
         <button class="vcm-btn-project-list" @click="changeHeatmapCanvas">Change Heatmap canvas</button>
@@ -32,28 +32,20 @@ export default {
   },
   methods: {
     drawStations3D() {
-      console.log("[DEBUG] Drawing 3D stations...")
+      console.log("[DEBUG] Drawing stations...")
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.drawStationPoints3D();
     },
-    change3DHeatmapImage() {
-      console.log("[DEBUG] Changing 3D heatmap image...")
-      const heatmapInstance = heatmap.getInstance();
-      heatmapInstance.change3DHeatmapImage();
-      this.getCurrentHeatmapTime();
-    },
-    drawInternal3DHeatmap() {
-      console.log("[DEBUG] Drawing internal 3D heatmap...");
+    drawHeatmap() {
+      console.log("[DEBUG] Drawing heatmap...");
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.createHeatmapContainers();
-      heatmapInstance.createHeatmapCanvas();
-
       heatmapInstance.createHeatmapCanvasForContainers();
     },
     changeHeatmapCanvas() {
       console.log("[DEBUG] Changing heatmap canvas...");
       const heatmapInstance = heatmap.getInstance();
-      heatmapInstance.changeHeatmapCanvas();
+      heatmapInstance.changeToNextHeatmapCanvas();
     },
     reload() {
       window.location.reload();

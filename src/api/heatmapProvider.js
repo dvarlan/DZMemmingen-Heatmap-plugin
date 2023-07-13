@@ -20,7 +20,7 @@ export default class heatmap {
             north: 47.990433576113986,
         };
 
-        this.heatmap3DBoundingBox = Cesium.Rectangle.fromDegrees(
+        this.heatmapBoundingBox = Cesium.Rectangle.fromDegrees(
             this.rawHeatmapBouningBox.west,
             this.rawHeatmapBouningBox.south,
             this.rawHeatmapBouningBox.east,
@@ -38,6 +38,8 @@ export default class heatmap {
             minOpacity: null,
             blur: 0.85
         };
+
+        this.currentTime = 0;
 
         this.canvasHeight = 600 * 3; // This will change how big the heatmap points are
         this.canvasWidth = 800 * 3; // This will change how big the heatmap points are
@@ -60,7 +62,7 @@ export default class heatmap {
         for (let time = 0; time < 24; time++) {
             const heatmapContainer = document.createElement("div");
             heatmapContainer.setAttribute("id", `heatmapContainer_${time}`);
-            heatmapContainer.setAttribute("style", `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none;`);
+            heatmapContainer.setAttribute("style", `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
             heatmapContainerWrapper.appendChild(heatmapContainer);
         }
     }
@@ -70,6 +72,7 @@ export default class heatmap {
             let heatmapCanvas = h337.create({
                 container: document.getElementById(`heatmapContainer_${time}`),
                 radius: this.heatmapConfig.radius
+                //TODO: Add & test rest of the config
             });
 
             heatmapCanvas.setData({
@@ -77,45 +80,32 @@ export default class heatmap {
                 max: dataInstance.getMaxTempValue(),
                 data: dataInstance.heatmapData[time].data
             });
-            console.log("---")
-            console.log(dataInstance.getMinTempValue());
-            console.log(dataInstance.getMaxTempValue());
-            console.log(dataInstance.heatmapData[time].data);
         }
     }
     
-    createHeatmapCanvas() {
-        this.heatmapInstance = h337.create({
-            container: document.getElementById("heatmapContainer_0"),
-            radius: this.heatmapConfig.radius
-        });
+    changeToNextHeatmapCanvas() {
+        console.log("Current time: " + this.currentTime);
 
-        // Some default values
-        this.heatmapData = [{ x: 0, y: 0, value: 10 }, { x: 50, y: 50, value: 10 }, { x: 100, y: 100, value: 10 }, { x: 0, y: 500, value: 10 }];
+        if(this.currentTime === 24) {
+            this.currentTime = 0;
+        }
 
-        this.heatmapInstance.setData({
-            min: 0,
-            max: 10,
-            data: this.heatmapData
-        })
-    }
-
-    changeHeatmapCanvas() {
-        this.heatmapInstance.setData(dataInstance.getDataForInternalHeatmap());
-
-        // Currently has to be done like this, see https://github.com/CesiumGS/cesium/issues/5080
         map.getScene().imageryLayers.remove(this.heatmapLayer);
+
+        let currentContainer = document.getElementById(`heatmapContainer_${this.currentTime}`);
+        let currentCanvas = currentContainer.querySelector('canvas[class="heatmap-canvas"]');
 
         this.heatmapLayer = new Cesium.ImageryLayer(
             new Cesium.SingleTileImageryProvider({
-                url: (document.getElementsByClassName("heatmap-canvas")[0]).toDataURL(),
-                rectangle: this.heatmap3DBoundingBox
+                url: currentCanvas.toDataURL(),
+                rectangle: this.heatmapBoundingBox
             })
         );
+
         map.getScene().imageryLayers.add(this.heatmapLayer);
-
+        this.currentTime++;
     }
-
+    
     drawStationPoints3D() {
         const dataSource = dataInstance.getPointsAsCesiumDataSource();
         map.getDatasources().add(dataSource);
