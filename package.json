@@ -1,0 +1,22 @@
+{
+  "name": "heatmap",
+  "version": "1.0.0",
+  "description": "A plugin for visualizing temperature based heatmaps.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "vcmplugin build",
+    "pack": "vcmplugin pack",
+    "serve": "vcmplugin serve --vcm https://dz.memmingen.de"
+  },
+  "author": "Daniel Varlan <daniel.varlan@student.uni-augsburg.de>",
+  "license": "ISC",
+  "engines": {
+    "vcm": ">=4.0"
+  },
+  "devDependencies": {
+    "@vcmap/plugin-cli": "^1.1.1"
+  },
+  "dependencies": {
+    "heatmap.js-fix": "^1.0.0"
+  }
+}
