@@ -25,8 +25,6 @@ export default class heatmap {
             this.rawHeatmapBouningBox.north
         );
 
-        this.heatmapInstance = null;
-        this.heatmapData = null;
         this.heatmapLayer = null;
         this.heatmapConfig = {
             radius: 40,
@@ -106,5 +104,15 @@ export default class heatmap {
         const dataSource = dataInstance.getPointsAsCesiumDataSource();
         map.getDatasources().add(dataSource);
         console.log("[DEBUG] 3D stations added!");
+    }
+
+    clearLayers() {
+        console.log("[DEBUG] Clearing layers...")
+        let stationPoints = map.getDatasources().getByName("3D Station Points")[0];
+        if (stationPoints !== []) {
+            map.getDatasources().remove(stationPoints);
+        }
+        map.getScene().imageryLayers.remove(this.heatmapLayer);
+        this.currentTime = 0;
     }
 }

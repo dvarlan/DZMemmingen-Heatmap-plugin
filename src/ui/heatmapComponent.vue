@@ -23,10 +23,8 @@
           <button @click="startAnimation">Start</button>
           <button @click="stopAnimation">Stop</button>
         </div>
-        <br>
-        <button class="vcm-btn-project-list" @click="changeHeatmapCanvas">Change Heatmap canvas</button>
         <hr>
-        <button class="vcm-btn-project-list" @click="reload">Reset</button>
+        <button class="vcm-btn-project-list" @click="clear">Clear</button>
       </div>
     </div>
   </div>
@@ -90,8 +88,16 @@ export default {
         this.animationId = null;
       }
     },
-    reload() {
-      window.location.reload();
+    clear() {
+      this.stopAnimation();
+      localStorage.clear();
+      this.currentHeatmapTime = null;
+      this.animationSpeed = 1;
+
+      const heatmapInstance = heatmap.getInstance();
+      heatmapInstance.clearLayers();
+
+      this.showingHeatmap = false;
     }
   },
   mounted() {
