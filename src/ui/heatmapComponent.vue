@@ -7,7 +7,7 @@
     <div class="scroll-wrap">
       <div class="buttons">
         <hr>
-        <button class="vcm-btn-project-list" @click="drawStations3D">Add Stationpoints</button>
+        <button class="vcm-btn-project-list" @click="drawStations">Add Stationpoints</button>
         <br>
         <br>
         <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
@@ -23,8 +23,9 @@
           <button @click="startAnimation">Start</button>
           <button @click="stopAnimation">Stop</button>
         </div>
-        <hr>
+        <br>
         <button class="vcm-btn-project-list" @click="clear">Clear</button>
+        <hr>
       </div>
     </div>
   </div>
@@ -48,7 +49,7 @@ export default {
     };
   },
   methods: {
-    drawStations3D() {
+    drawStations() {
       console.log("[DEBUG] Drawing stations...")
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.drawStationPoints3D();
@@ -77,9 +78,16 @@ export default {
       } else {
         this.currentHeatmapTime = `0${time}:00`;
       }
+
+      if (time !== -1) {
+        localStorage.setItem("currentTime", this.currentHeatmapTime);
+      }
     },
     startAnimation() {
       this.stopAnimation();
+
+      localStorage.setItem("animationSpeed", this.animationSpeed);
+
       this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
     },
     stopAnimation() {
@@ -102,6 +110,8 @@ export default {
   },
   mounted() {
     localStorage.getItem("showingHeatmap") ? this.showingHeatmap = true : this.showingHeatmap = false;
+    localStorage.getItem("animationSpeed") ? this.animationSpeed = localStorage.getItem("animationSpeed") : this.animationSpeed = 1;
+    localStorage.getItem("currentTime") ? this.currentHeatmapTime = localStorage.getItem("currentTime") : null;
   }
 };
 </script>
