@@ -15,12 +15,12 @@
         <div v-if="showingHeatmap" class="animation-controls">
           <br>
           <h3>Animation controls</h3>
-          <p>Current time: {{ currentHeatmapTime }}</p>
-          <input v-model="animationSpeed" id="time-slider" type="range" min="1" max="5">
+          <p v-if="currentHeatmapTime">Current time: {{ currentHeatmapTime }}</p>
+          <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
           <br>
           <label>Animation Speed: {{ animationSpeed }} sec.</label>
           <br>
-          <button @click="startAnimation">Start</button>
+          <button @click="startAnimation">Start / Resume</button>
           <button @click="stopAnimation">Stop</button>
         </div>
         <br>
@@ -78,16 +78,9 @@ export default {
       } else {
         this.currentHeatmapTime = `0${time}:00`;
       }
-
-      if (time !== -1) {
-        localStorage.setItem("currentTime", this.currentHeatmapTime);
-      }
     },
     startAnimation() {
       this.stopAnimation();
-
-      localStorage.setItem("animationSpeed", this.animationSpeed);
-
       this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
     },
     stopAnimation() {
@@ -112,6 +105,13 @@ export default {
     localStorage.getItem("showingHeatmap") ? this.showingHeatmap = true : this.showingHeatmap = false;
     localStorage.getItem("animationSpeed") ? this.animationSpeed = localStorage.getItem("animationSpeed") : this.animationSpeed = 1;
     localStorage.getItem("currentTime") ? this.currentHeatmapTime = localStorage.getItem("currentTime") : null;
+  },
+  beforeDestroy() {
+    this.stopAnimation();
+    localStorage.setItem("animationSpeed", this.animationSpeed);
+    if (this.currentHeatmapTime >= 0) {
+      localStorage.setItem("currentTime", this.currentHeatmapTime);
+    }
   }
 };
 </script>
@@ -134,7 +134,8 @@ h2 {
   padding: .5rem 0 0 0;
 }
 
-.info-button {
-  margin-left: 5px;
+.animation-controls button {
+  margin-left: 6px;
+  margin-top: 15px;
 }
 </style>
