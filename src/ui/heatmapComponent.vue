@@ -7,11 +7,22 @@
     <div class="scroll-wrap">
       <div class="buttons">
         <hr>
-        <button class="vcm-btn-project-list" @click="drawStations3D">Add Stations</button>
+        <button class="vcm-btn-project-list" @click="drawStations3D">Add Stationpoints</button>
         <br>
         <br>
-        <button class="vcm-btn-project-list" @click="drawHeatmap">Draw Heatmap</button>
+        <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
         <br>
+        <div v-if="showingHeatmap" class="animation-controls">
+          <br>
+          <h3>Animation controls</h3>
+          <p>Current time: {{ currentHeatmapTime }}</p>
+          <input v-model="animationSpeed" id="time-slider" type="range" min="1" max="5">
+          <br>
+          <label>Animation Speed: {{ animationSpeed }} sec.</label>
+          <br>
+          <button>Start</button>
+          <button>Stop</button>
+        </div>
         <br>
         <button class="vcm-btn-project-list" @click="changeHeatmapCanvas">Change Heatmap canvas</button>
         <hr>
@@ -23,11 +34,19 @@
 <script>
 import heatmap from '../api/heatmapProvider';
 
+window.onbeforeunload = () => {
+  localStorage.clear();
+}
+
 export default {
   name: 'heatmapComponent',
   data() {
     return {
       //TODO: i18n
+      showingHeatmap: false,
+      currentHeatmapTime: this.getCurrentTime(),
+      animationId: null,
+      animationSpeed: 1
     };
   },
   methods: {
@@ -38,6 +57,10 @@ export default {
     },
     drawHeatmap() {
       console.log("[DEBUG] Drawing heatmap...");
+
+      this.showingHeatmap = true;
+      localStorage.setItem("showingHeatmap", true);
+
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.createHeatmapContainers();
       heatmapInstance.createHeatmapCanvasForContainers();
@@ -46,10 +69,23 @@ export default {
       console.log("[DEBUG] Changing heatmap canvas...");
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.changeToNextHeatmapCanvas();
+      this.getCurrentTime();
+    },
+    getCurrentTime() {
+      const heatmapInstance = heatmap.getInstance();
+      let time = heatmapInstance.currentTime - 1;
+      if (time >= 10) {
+        this.currentHeatmapTime = `${time}:00`;
+      } else {
+        this.currentHeatmapTime = `0${time}:00`;
+      }
     },
     reload() {
       window.location.reload();
     }
+  },
+  mounted() {
+    localStorage.getItem("showingHeatmap")? this.showingHeatmap = true : this.showingHeatmap = false;
   }
 };
 </script>

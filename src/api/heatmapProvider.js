@@ -9,10 +9,8 @@ let _instance = null;
 export default class heatmap {
     constructor() {
 
-        /* The cesium map where everything is added */
         map = framework.getActiveMap();
 
-        /* Boundingbox for 3D Heatmap */
         this.rawHeatmapBouningBox = {
             west: 10.165426272431576,
             south: 47.97753412328743,
@@ -27,15 +25,14 @@ export default class heatmap {
             this.rawHeatmapBouningBox.north
         );
 
-        /* Internal 3D Heatmap using custom HeatmapJS */
         this.heatmapInstance = null;
         this.heatmapData = null;
         this.heatmapLayer = null;
         this.heatmapConfig = {
             radius: 40,
             opacity: .6,
-            maxOpacity: null,
-            minOpacity: null,
+            maxOpacity: undefined,
+            minOpacity: undefined,
             blur: 0.85
         };
 
@@ -43,7 +40,6 @@ export default class heatmap {
 
         this.canvasHeight = 600 * 3; // This will change how big the heatmap points are
         this.canvasWidth = 800 * 3; // This will change how big the heatmap points are
-        this.heatmapRadius = 40; // This also allows manipulation of the radius regardless of canvas size
     }
 
     static getInstance() {
@@ -82,11 +78,11 @@ export default class heatmap {
             });
         }
     }
-    
+
     changeToNextHeatmapCanvas() {
         console.log("Current time: " + this.currentTime);
 
-        if(this.currentTime === 24) {
+        if (this.currentTime === 24) {
             this.currentTime = 0;
         }
 
@@ -105,7 +101,7 @@ export default class heatmap {
         map.getScene().imageryLayers.add(this.heatmapLayer);
         this.currentTime++;
     }
-    
+
     drawStationPoints3D() {
         const dataSource = dataInstance.getPointsAsCesiumDataSource();
         map.getDatasources().add(dataSource);
