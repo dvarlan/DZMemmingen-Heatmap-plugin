@@ -20,8 +20,8 @@
           <br>
           <label>Animation Speed: {{ animationSpeed }} sec.</label>
           <br>
-          <button>Start</button>
-          <button>Stop</button>
+          <button @click="startAnimation">Start</button>
+          <button @click="stopAnimation">Stop</button>
         </div>
         <br>
         <button class="vcm-btn-project-list" @click="changeHeatmapCanvas">Change Heatmap canvas</button>
@@ -80,12 +80,22 @@ export default {
         this.currentHeatmapTime = `0${time}:00`;
       }
     },
+    startAnimation() {
+      this.stopAnimation();
+      this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
+    },
+    stopAnimation() {
+      if (this.animationId !== null) {
+        window.clearInterval(this.animationId);
+        this.animationId = null;
+      }
+    },
     reload() {
       window.location.reload();
     }
   },
   mounted() {
-    localStorage.getItem("showingHeatmap")? this.showingHeatmap = true : this.showingHeatmap = false;
+    localStorage.getItem("showingHeatmap") ? this.showingHeatmap = true : this.showingHeatmap = false;
   }
 };
 </script>
