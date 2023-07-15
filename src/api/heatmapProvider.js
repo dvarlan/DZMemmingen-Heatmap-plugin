@@ -28,16 +28,15 @@ export default class heatmap {
         this.heatmapLayer = null;
         this.heatmapConfig = {
             radius: 40,
-            opacity: .6,
-            maxOpacity: undefined,
-            minOpacity: undefined,
+            maxOpacity: 0.6,
+            minOpacity: 0,
             blur: 0.85
         };
 
         this.currentTime = 0;
 
-        this.canvasHeight = 600 * 3; // This will change how big the heatmap points are
-        this.canvasWidth = 800 * 3; // This will change how big the heatmap points are
+        this.canvasHeight = 600 * 3;
+        this.canvasWidth = 800 * 3;
     }
 
     static getInstance() {
@@ -65,8 +64,10 @@ export default class heatmap {
         for (let time = 0; time < 24; time++) {
             let heatmapCanvas = h337.create({
                 container: document.getElementById(`heatmapContainer_${time}`),
-                radius: this.heatmapConfig.radius
-                //TODO: Add & test rest of the config
+                radius: this.heatmapConfig.radius,
+                maxOpacity: this.heatmapConfig.maxOpacity,
+                minOpacity: this.heatmapConfig.minOpacity,
+                blur: this.heatmapConfig.blur
             });
 
             heatmapCanvas.setData({

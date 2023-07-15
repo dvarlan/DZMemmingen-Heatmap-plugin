@@ -16,6 +16,7 @@ export default {
   font-size: 24px;
   color: grey;
 }
+
 .vcm-btn-base-splash-hover:hover .heatmap-btn {
   color: white;
 }
