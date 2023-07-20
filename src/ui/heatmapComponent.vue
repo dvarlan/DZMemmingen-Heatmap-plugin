@@ -12,6 +12,11 @@
         <br>
         <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
         <br>
+        <br>
+        <input v-model="heatmapRadiusSize" :disabled="setHeatmapRadius" type="range" min="1" max="500">
+        <br>
+        <label>Heatmap radius size: {{ heatmapRadiusSize }}</label>
+        <br>
         <div v-if="showingHeatmap" class="animation-controls">
           <br>
           <h3>Animation controls</h3>
@@ -41,9 +46,10 @@ export default {
   name: 'heatmapComponent',
   data() {
     return {
-      //TODO: i18n
       showingHeatmap: false,
       currentHeatmapTime: this.getCurrentTime(),
+      heatmapRadiusSize: 40, //TODO: Add / migrate to vuex store
+      setHeatmapRadius: false,
       animationId: null,
       animationSpeed: 1
     };
@@ -61,6 +67,8 @@ export default {
       localStorage.setItem("showingHeatmap", true);
 
       const heatmapInstance = heatmap.getInstance();
+      heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
+      this.setHeatmapRadius = true;
       heatmapInstance.createHeatmapContainers();
       heatmapInstance.createHeatmapCanvasForContainers();
     },
@@ -90,6 +98,7 @@ export default {
       }
     },
     clear() {
+      //TODO: Clear Layers / Divs from the dom
       this.stopAnimation();
       localStorage.clear();
       this.currentHeatmapTime = null;
