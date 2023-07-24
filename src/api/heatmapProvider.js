@@ -110,11 +110,14 @@ export default class heatmap {
     clearLayers() {
         console.log("[DEBUG] Clearing layers...")
         let stationPoints = map.getDatasources().getByName("3D Station Points")[0];
+        let heatmapContainer = document.getElementById("heatmap_container_wrapper");
         if (stationPoints !== []) {
             map.getDatasources().remove(stationPoints);
         }
+        if (heatmapContainer) {
+            heatmapContainer.remove();
+        }
         map.getScene().imageryLayers.remove(this.heatmapLayer);
-        document.getElementById("heatmap_container_wrapper").remove();
         this.currentTime = 0;
     }
 }

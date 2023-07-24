@@ -13,7 +13,7 @@
         <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
         <br>
         <br>
-        <input v-model="heatmapRadiusSize" :disabled="setHeatmapRadius" type="range" min="1" max="500">
+        <input v-model="heatmapRadiusSize" :disabled="showingHeatmap" type="range" min="1" max="500">
         <br>
         <label>Heatmap radius size: {{ heatmapRadiusSize }}</label>
         <br>
@@ -49,7 +49,6 @@ export default {
       showingHeatmap: false,
       currentHeatmapTime: this.getCurrentTime(),
       heatmapRadiusSize: 40, //TODO: Add / migrate to vuex store
-      setHeatmapRadius: false,
       animationId: null,
       animationSpeed: 1
     };
@@ -68,7 +67,6 @@ export default {
 
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
-      this.setHeatmapRadius = true;
       heatmapInstance.createHeatmapContainers();
       heatmapInstance.createHeatmapCanvasForContainers();
     },
