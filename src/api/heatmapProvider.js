@@ -114,6 +114,7 @@ export default class heatmap {
             map.getDatasources().remove(stationPoints);
         }
         map.getScene().imageryLayers.remove(this.heatmapLayer);
+        document.getElementById("heatmap_container_wrapper").remove();
         this.currentTime = 0;
     }
 }
