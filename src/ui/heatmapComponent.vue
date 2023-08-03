@@ -38,20 +38,27 @@
 <script>
 import heatmap from '../api/heatmapProvider';
 
-window.onbeforeunload = () => {
-  localStorage.clear();
-}
-
 export default {
   name: 'heatmapComponent',
   data() {
     return {
-      showingHeatmap: false,
       currentHeatmapTime: this.getCurrentTime(),
       heatmapRadiusSize: 40,
       animationId: null,
-      animationSpeed: 1
     };
+  },
+  computed: {
+    showingHeatmap() {
+      return this.$store.getters['heatmap/isHeatmapVisible'];
+    },
+    animationSpeed: {
+      get() {
+        return this.$store.getters['heatmap/currentAnimationSpeed'];
+      },
+      set(value) {
+        this.$store.commit('heatmap/changeAnimationSpeed', value);
+      }
+    }
   },
   methods: {
     drawStations() {
@@ -62,8 +69,7 @@ export default {
     drawHeatmap() {
       console.log("[DEBUG] Drawing heatmap...");
 
-      this.showingHeatmap = true;
-      localStorage.setItem("showingHeatmap", true);
+      this.$store.commit('heatmap/showHeatmap');
 
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
@@ -97,27 +103,17 @@ export default {
     },
     clear() {
       this.stopAnimation();
-      localStorage.clear();
       this.currentHeatmapTime = null;
-      this.animationSpeed = 1;
+      this.$store.commit('heatmap/resetAnimationSpeed');
 
       const heatmapInstance = heatmap.getInstance();
       heatmapInstance.clearLayers();
 
-      this.showingHeatmap = false;
+      this.$store.commit('heatmap/clearHeatmap');
     }
-  },
-  mounted() {
-    localStorage.getItem("showingHeatmap") ? this.showingHeatmap = true : this.showingHeatmap = false;
-    localStorage.getItem("animationSpeed") ? this.animationSpeed = localStorage.getItem("animationSpeed") : this.animationSpeed = 1;
-    localStorage.getItem("currentTime") ? this.currentHeatmapTime = localStorage.getItem("currentTime") : null;
   },
   beforeDestroy() {
     this.stopAnimation();
-    localStorage.setItem("animationSpeed", this.animationSpeed);
-    if (this.currentHeatmapTime >= 0) {
-      localStorage.setItem("currentTime", this.currentHeatmapTime);
-    }
   }
 };
 </script>
