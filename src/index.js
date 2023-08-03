@@ -19,6 +19,8 @@ export default {
       state: {
         showingHeatmap: false,
         animationSpeed: 1,
+        startDate: '2023-01-01',
+        endDate: '2023-07-31',
       },
       mutations: {
         showHeatmap(state) {
@@ -32,6 +34,12 @@ export default {
         },
         resetAnimationSpeed(state) {
           state.animationSpeed = 1;
+        },
+        setStartDate(state, value) {
+          state.startDate = value;
+        },
+        setEndDate(state, value) {
+          state.endDate = value;
         }
       },
       getters: {
@@ -40,6 +48,12 @@ export default {
         },
         currentAnimationSpeed(state) {
           return state.animationSpeed;
+        },
+        getStartDate(state) {
+          return state.startDate;
+        },
+        getEndDate(state) {
+          return state.endDate;
         }
       }
     }
