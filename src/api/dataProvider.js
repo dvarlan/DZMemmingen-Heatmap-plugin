@@ -94,7 +94,6 @@ export default class dataProvider {
     }
 
     getRandomTempValue() {
-        //TODO: Generate the random Temp. value based on the currentTime (colder at night, hotter during the day)
         return Math.floor(Math.random() * (this.maxRandomValue - (this.minRandomValue)) + this.minRandomValue);
     }
 

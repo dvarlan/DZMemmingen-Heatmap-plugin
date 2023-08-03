@@ -48,7 +48,7 @@ export default {
     return {
       showingHeatmap: false,
       currentHeatmapTime: this.getCurrentTime(),
-      heatmapRadiusSize: 40, //TODO: Add / migrate to vuex store
+      heatmapRadiusSize: 40,
       animationId: null,
       animationSpeed: 1
     };
@@ -96,7 +96,6 @@ export default {
       }
     },
     clear() {
-      //TODO: Clear Layers / Divs from the dom
       this.stopAnimation();
       localStorage.clear();
       this.currentHeatmapTime = null;

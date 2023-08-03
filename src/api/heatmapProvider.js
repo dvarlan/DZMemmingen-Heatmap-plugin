@@ -35,8 +35,8 @@ export default class heatmap {
 
         this.currentTime = 0;
 
-        this.canvasHeight = 600 * 3;
-        this.canvasWidth = 800 * 3;
+        this.canvasHeight = 1800;
+        this.canvasWidth = 2400;
     }
 
     static getInstance() {
