@@ -12,7 +12,7 @@ export default {
   version,
   registerUiPlugin: async () => ({
     name: 'HeatmapPlugin',
-    supportedMaps: ['vcs.vcm.maps.Cesium'], // The plugin will only be available in 3D
+    supportedMaps: ['vcs.vcm.maps.Cesium'],
     routes,
     widgetButton,
     store: {

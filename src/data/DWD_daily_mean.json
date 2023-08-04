@@ -1,0 +1,2268 @@
+﻿[
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-01",
+        "Wert": "10.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-02",
+        "Wert": "9.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-03",
+        "Wert": "6.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-04",
+        "Wert": "6.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-05",
+        "Wert": "9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-06",
+        "Wert": "5.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-07",
+        "Wert": "3.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-08",
+        "Wert": "3.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-09",
+        "Wert": "4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-10",
+        "Wert": "2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-11",
+        "Wert": "5.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-12",
+        "Wert": "5.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-13",
+        "Wert": "6.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-14",
+        "Wert": "5.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-15",
+        "Wert": "4.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-16",
+        "Wert": "0.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-17",
+        "Wert": "0",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-18",
+        "Wert": "-0.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-19",
+        "Wert": "-2.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-20",
+        "Wert": "-3.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-21",
+        "Wert": "-4.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-22",
+        "Wert": "-3.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-23",
+        "Wert": "-2.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-24",
+        "Wert": "0.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-25",
+        "Wert": "-0.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-26",
+        "Wert": "-2.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-27",
+        "Wert": "-2.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-28",
+        "Wert": "-1.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-29",
+        "Wert": "-2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-30",
+        "Wert": "-1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-01-31",
+        "Wert": "0.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-01",
+        "Wert": "2.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-02",
+        "Wert": "3.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-03",
+        "Wert": "4.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-04",
+        "Wert": "2.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-05",
+        "Wert": "-0.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-06",
+        "Wert": "-1.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-07",
+        "Wert": "-3.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-08",
+        "Wert": "-4.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-09",
+        "Wert": "-3.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-10",
+        "Wert": "-1.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-11",
+        "Wert": "0.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-12",
+        "Wert": "2.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-13",
+        "Wert": "0.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-14",
+        "Wert": "0.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-15",
+        "Wert": "2.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-16",
+        "Wert": "5.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-17",
+        "Wert": "9.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-18",
+        "Wert": "10.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-19",
+        "Wert": "7.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-20",
+        "Wert": "7.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-21",
+        "Wert": "7.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-22",
+        "Wert": "5.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-23",
+        "Wert": "7.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-24",
+        "Wert": "5.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-25",
+        "Wert": "1.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-26",
+        "Wert": "-2.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-27",
+        "Wert": "-2.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-02-28",
+        "Wert": "-2.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-01",
+        "Wert": "-0.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-02",
+        "Wert": "0.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-03",
+        "Wert": "1.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-04",
+        "Wert": "0.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-05",
+        "Wert": "0.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-06",
+        "Wert": "1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-07",
+        "Wert": "2.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-08",
+        "Wert": "5.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-09",
+        "Wert": "8.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-10",
+        "Wert": "5.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-11",
+        "Wert": "1.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-12",
+        "Wert": "4.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-13",
+        "Wert": "11.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-14",
+        "Wert": "6.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-15",
+        "Wert": "2.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-16",
+        "Wert": "3.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-17",
+        "Wert": "7.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-18",
+        "Wert": "10.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-19",
+        "Wert": "9.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-20",
+        "Wert": "7.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-21",
+        "Wert": "8.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-22",
+        "Wert": "10.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-23",
+        "Wert": "11.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-24",
+        "Wert": "9.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-25",
+        "Wert": "6.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-26",
+        "Wert": "5.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-27",
+        "Wert": "1.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-28",
+        "Wert": "1.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-29",
+        "Wert": "8.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-30",
+        "Wert": "9.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-03-31",
+        "Wert": "8.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-01",
+        "Wert": "6.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-02",
+        "Wert": "6.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-03",
+        "Wert": "1.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-04",
+        "Wert": "-0.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-05",
+        "Wert": "0.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-06",
+        "Wert": "4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-07",
+        "Wert": "6.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-08",
+        "Wert": "4.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-09",
+        "Wert": "5.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-10",
+        "Wert": "7.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-11",
+        "Wert": "8.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-12",
+        "Wert": "8.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-13",
+        "Wert": "5.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-14",
+        "Wert": "5.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-15",
+        "Wert": "4.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-16",
+        "Wert": "5.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-17",
+        "Wert": "6.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-18",
+        "Wert": "8.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-19",
+        "Wert": "6.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-20",
+        "Wert": "4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-21",
+        "Wert": "9.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-22",
+        "Wert": "12.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-23",
+        "Wert": "11.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-24",
+        "Wert": "8.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-25",
+        "Wert": "5.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-26",
+        "Wert": "7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-27",
+        "Wert": "9.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-28",
+        "Wert": "10.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-29",
+        "Wert": "13.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-04-30",
+        "Wert": "11.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-01",
+        "Wert": "9.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-02",
+        "Wert": "9.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-03",
+        "Wert": "9.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-04",
+        "Wert": "12.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-05",
+        "Wert": "15.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-06",
+        "Wert": "14",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-07",
+        "Wert": "14.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-08",
+        "Wert": "12.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-09",
+        "Wert": "14.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-10",
+        "Wert": "10.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-11",
+        "Wert": "9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-12",
+        "Wert": "10.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-13",
+        "Wert": "9.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "3",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-14",
+        "Wert": "10.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-15",
+        "Wert": "10.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-16",
+        "Wert": "9.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-17",
+        "Wert": "8.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-18",
+        "Wert": "9.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-19",
+        "Wert": "10",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-20",
+        "Wert": "14.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-21",
+        "Wert": "15.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-22",
+        "Wert": "16.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-23",
+        "Wert": "14.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-24",
+        "Wert": "10.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-25",
+        "Wert": "13.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-26",
+        "Wert": "15.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-27",
+        "Wert": "15.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-28",
+        "Wert": "15.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-29",
+        "Wert": "15.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-30",
+        "Wert": "16.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-05-31",
+        "Wert": "16.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-01",
+        "Wert": "16.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-02",
+        "Wert": "16.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-03",
+        "Wert": "16.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-04",
+        "Wert": "16.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-05",
+        "Wert": "16.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-06",
+        "Wert": "15.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-07",
+        "Wert": "16.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-08",
+        "Wert": "17.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-09",
+        "Wert": "18",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-10",
+        "Wert": "18.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-11",
+        "Wert": "18.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-12",
+        "Wert": "18.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-13",
+        "Wert": "16.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-14",
+        "Wert": "16",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-15",
+        "Wert": "16.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-16",
+        "Wert": "17",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-17",
+        "Wert": "17.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-18",
+        "Wert": "20.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-19",
+        "Wert": "21.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-20",
+        "Wert": "23.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-21",
+        "Wert": "21.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-22",
+        "Wert": "23",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-23",
+        "Wert": "17.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-24",
+        "Wert": "18.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-25",
+        "Wert": "19.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-26",
+        "Wert": "21",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-27",
+        "Wert": "18.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-28",
+        "Wert": "16.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-29",
+        "Wert": "19.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-06-30",
+        "Wert": "17.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-01",
+        "Wert": "17.2",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-02",
+        "Wert": "17.8",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-03",
+        "Wert": "18.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-04",
+        "Wert": "18.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-05",
+        "Wert": "16.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-06",
+        "Wert": "16.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-07",
+        "Wert": "20",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-08",
+        "Wert": "20.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-09",
+        "Wert": "23.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-10",
+        "Wert": "21.4",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-11",
+        "Wert": "23.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-12",
+        "Wert": "19.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-13",
+        "Wert": "17.9",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-14",
+        "Wert": "19.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-15",
+        "Wert": "24.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-16",
+        "Wert": "19.3",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-17",
+        "Wert": "20.7",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-18",
+        "Wert": "20.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-19",
+        "Wert": "21.5",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-20",
+        "Wert": "19",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-21",
+        "Wert": "16",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-22",
+        "Wert": "16.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-23",
+        "Wert": "19",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-24",
+        "Wert": "17.6",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    },
+    {
+        "Produkt_Code": "OBS_DEU_P1D_T2M",
+        "SDO_ID": "3244",
+        "Zeitstempel": "2023-07-25",
+        "Wert": "15.1",
+        "Qualitaet_Byte": "0",
+        "Qualitaet_Niveau": "1",
+        "null": [
+            ""
+        ]
+    }
+]
