@@ -16,11 +16,13 @@
         <div class="tooltip">
             <p>A background temperature value from the DWD (Deutscher Wetterdienst) will be inserted</p>
         </div>
-        <button>Submit</button>
+        <button @click="submitSelection">Submit</button>
     </div>
 </template>
 
 <script>
+import dataService from "../api/dataService";
+
 export default {
     data() {
         return {
@@ -51,6 +53,12 @@ export default {
             set(value) {
                 this.$store.commit('heatmap/setBackgroundValue', value);
             }
+        }
+    },
+    methods: {
+        submitSelection() {
+            let service = new dataService();
+            service.parseData();
         }
     }
 }
