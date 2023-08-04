@@ -9,6 +9,13 @@
         <input @input="event => endDate = event.target.value" :value="endDate" name="end-date" min="2023-01-01"
             max="2023-07-31" type="date">
         <p>Current Timeframe: {{ startDate }} | {{ endDate }}</p>
+        <div class="background-picker">
+            <label for="background-value">Use background value: </label>
+            <input @input="event => usingBackgroundValue = event.target.checked" :checked="usingBackgroundValue" name="background-value" type="checkbox">
+        </div>
+        <div class="tooltip">
+            <p>A background temperature value from the DWD (Deutscher Wetterdienst) will be inserted</p>
+        </div>
         <button>Submit</button>
     </div>
 </template>
@@ -36,7 +43,30 @@ export default {
             set(value) {
                 this.$store.commit('heatmap/setEndDate', value);
             }
+        },
+        usingBackgroundValue: {
+            get() {
+                return this.$store.getters['heatmap/usingBackgroundValue'];
+            },
+            set(value) {
+                this.$store.commit('heatmap/setBackgroundValue', value);
+            }
         }
     }
 }
 </script>
+
+<style>
+.background-picker {
+    margin-bottom: 10px;
+}
+
+.background-picker:hover+.tooltip {
+    display: block;
+    color: blue;
+}
+
+.tooltip {
+    display: none;
+}
+</style>

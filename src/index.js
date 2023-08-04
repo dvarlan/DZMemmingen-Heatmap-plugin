@@ -21,6 +21,7 @@ export default {
         animationSpeed: 1,
         startDate: '2023-01-01',
         endDate: '2023-07-31',
+        backgroundValue: false,
       },
       mutations: {
         showHeatmap(state) {
@@ -40,6 +41,9 @@ export default {
         },
         setEndDate(state, value) {
           state.endDate = value;
+        },
+        setBackgroundValue(state, value) {
+          state.backgroundValue = value;
         }
       },
       getters: {
@@ -54,6 +58,9 @@ export default {
         },
         getEndDate(state) {
           return state.endDate;
+        },
+        usingBackgroundValue(state) {
+          return state.backgroundValue;
         }
       }
     }
