@@ -11,7 +11,8 @@
         <p>Current Timeframe: {{ startDate }} | {{ endDate }}</p>
         <div class="background-picker">
             <label for="background-value">Use background value: </label>
-            <input @input="event => usingBackgroundValue = event.target.checked" :checked="usingBackgroundValue" name="background-value" type="checkbox">
+            <input @input="event => usingBackgroundValue = event.target.checked" :checked="usingBackgroundValue"
+                name="background-value" type="checkbox">
         </div>
         <div class="tooltip">
             <p>A background temperature value from the DWD (Deutscher Wetterdienst) will be inserted</p>
@@ -58,7 +59,9 @@ export default {
     methods: {
         submitSelection() {
             let service = new dataService();
-            service.parseData();
+            service.parseData().then(() => {
+                service.getSensorDataForTimeframe();
+            });
         }
     }
 }
