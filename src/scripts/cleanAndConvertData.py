@@ -44,37 +44,39 @@ df[['Lat', 'Lon']] = df['Sensorname'].apply(get_lat_lon)
 
 df['Zeitstempel'] = pd.to_datetime(df['Zeitstempel'])
 
-json_data = {}
+json_data = []
 start_date = pd.Timestamp('2023-01-01')
 end_date = pd.Timestamp('2023-07-31')
 current_date = start_date
 
 while current_date <= end_date:
     daily_data = df[df['Zeitstempel'].dt.date == current_date.date()]
-    day_sensor_data = {}
+    day_sensor_data = []
 
-    for index, row in daily_data.iterrows():
-        timestamp = row['Zeitstempel']
-        hour = timestamp.strftime('%H:%M:%S')
-        sensor_data = {
-            "Lat": row['Lat'],
-            "Lon": row['Lon'],
-            "Wert": row['Wert']
-        }
-        if hour in day_sensor_data:
-            day_sensor_data[hour]["data"].append(sensor_data)
-        else:
-            day_sensor_data[hour] = {
-                "Uhrzeit": hour,
-                "data": [sensor_data]
+    for hour in range(24):
+        hourly_data = daily_data[daily_data['Zeitstempel'].dt.hour == hour]
+        sensors = []
+        for index, row in hourly_data.iterrows():
+            sensor = {
+                "Lat": row['Lat'],
+                "Lon": row['Lon'],
+                "Wert": row['Wert']
             }
+            sensors.append(sensor)
+
+        hour_data = {
+            "Uhrzeit": f"{hour:02}:00:00",
+            "data": sensors
+        }
+
+        day_sensor_data.append(hour_data)
 
     day_object = {
-        "Zeitstempel": current_date.isoformat(),
-        "data": list(day_sensor_data.values())
+        "Zeitstempel": current_date.date().isoformat(),
+        "data": day_sensor_data
     }
 
-    json_data[current_date.strftime('%Y-%m-%d')] = day_object
+    json_data.append(day_object)
 
     current_date += pd.DateOffset(days=1)
 
@@ -85,4 +87,3 @@ with open(output_file, 'w') as f:
 
 end_time = time.time()
 print(f"Konvertierung wurde in {(end_time - start_time):.2f} Sekunden abgeschlossen")
-
