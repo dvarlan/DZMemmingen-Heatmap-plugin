@@ -38,83 +38,86 @@
 </template>
 <script>
 import heatmap from '../api/heatmapProvider';
+import pointProvider from '../api/pointProvider';
 import DatePickerComponent from './datePickerComponent.vue';
 
 export default {
-    name: 'heatmapComponent',
-    data() {
-        return {
-            currentHeatmapTime: this.getCurrentTime(),
-            heatmapRadiusSize: 40,
-            animationId: null,
-        };
+  name: 'heatmapComponent',
+  data() {
+    return {
+      currentHeatmapTime: this.getCurrentTime(),
+      heatmapRadiusSize: 40,
+      animationId: null,
+    };
+  },
+  computed: {
+    showingHeatmap() {
+      return this.$store.getters['heatmap/isHeatmapVisible'];
     },
-    computed: {
-        showingHeatmap() {
-            return this.$store.getters['heatmap/isHeatmapVisible'];
-        },
-        animationSpeed: {
-            get() {
-                return this.$store.getters['heatmap/currentAnimationSpeed'];
-            },
-            set(value) {
-                this.$store.commit('heatmap/changeAnimationSpeed', value);
-            }
-        }
+    animationSpeed: {
+      get() {
+        return this.$store.getters['heatmap/currentAnimationSpeed'];
+      },
+      set(value) {
+        this.$store.commit('heatmap/changeAnimationSpeed', value);
+      }
+    }
+  },
+  methods: {
+    drawStations() {
+      console.log("[DEBUG] Drawing stations...");
+      const provider = new pointProvider();
+      provider.fetchStationPoints().then(() => {
+        provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
+      });
     },
-    methods: {
-        drawStations() {
-            console.log("[DEBUG] Drawing stations...");
-            const heatmapInstance = heatmap.getInstance();
-            heatmapInstance.drawStationPoints3D();
-        },
-        drawHeatmap() {
-            console.log("[DEBUG] Drawing heatmap...");
-            this.$store.commit('heatmap/showHeatmap');
-            const heatmapInstance = heatmap.getInstance();
-            heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
-            heatmapInstance.createHeatmapContainers();
-            heatmapInstance.createHeatmapCanvasForContainers();
-        },
-        changeHeatmapCanvas() {
-            console.log("[DEBUG] Changing heatmap canvas...");
-            const heatmapInstance = heatmap.getInstance();
-            heatmapInstance.changeToNextHeatmapCanvas();
-            this.getCurrentTime();
-        },
-        getCurrentTime() {
-            const heatmapInstance = heatmap.getInstance();
-            let time = heatmapInstance.currentTime - 1;
-            if (time >= 10) {
-                this.currentHeatmapTime = `${time}:00`;
-            }
-            else {
-                this.currentHeatmapTime = `0${time}:00`;
-            }
-        },
-        startAnimation() {
-            this.stopAnimation();
-            this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
-        },
-        stopAnimation() {
-            if (this.animationId !== null) {
-                window.clearInterval(this.animationId);
-                this.animationId = null;
-            }
-        },
-        clear() {
-            this.stopAnimation();
-            this.currentHeatmapTime = null;
-            this.$store.commit('heatmap/resetAnimationSpeed');
-            const heatmapInstance = heatmap.getInstance();
-            heatmapInstance.clearLayers();
-            this.$store.commit('heatmap/clearHeatmap');
-        }
+    drawHeatmap() {
+      console.log("[DEBUG] Drawing heatmap...");
+      this.$store.commit('heatmap/showHeatmap');
+      const heatmapInstance = heatmap.getInstance();
+      heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
+      heatmapInstance.createHeatmapContainers();
+      heatmapInstance.createHeatmapCanvasForContainers();
     },
-    beforeDestroy() {
-        this.stopAnimation();
+    changeHeatmapCanvas() {
+      console.log("[DEBUG] Changing heatmap canvas...");
+      const heatmapInstance = heatmap.getInstance();
+      heatmapInstance.changeToNextHeatmapCanvas();
+      this.getCurrentTime();
     },
-    components: { DatePickerComponent }
+    getCurrentTime() {
+      const heatmapInstance = heatmap.getInstance();
+      let time = heatmapInstance.currentTime - 1;
+      if (time >= 10) {
+        this.currentHeatmapTime = `${time}:00`;
+      }
+      else {
+        this.currentHeatmapTime = `0${time}:00`;
+      }
+    },
+    startAnimation() {
+      this.stopAnimation();
+      this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
+    },
+    stopAnimation() {
+      if (this.animationId !== null) {
+        window.clearInterval(this.animationId);
+        this.animationId = null;
+      }
+    },
+    clear() {
+      this.stopAnimation();
+      this.currentHeatmapTime = null;
+      this.$store.commit('heatmap/resetAnimationSpeed');
+      const heatmapInstance = heatmap.getInstance();
+      heatmapInstance.clearLayers();
+      this.$store.commit('heatmap/clearHeatmap');
+    }
+  },
+  beforeDestroy() {
+    this.stopAnimation();
+  },
+  components: { DatePickerComponent }
 };
 </script>
 <style scoped>

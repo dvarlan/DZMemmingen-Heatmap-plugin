@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         submitSelection() {
-            let service = new dataService();
+            const service = new dataService();
             service.parseData().then(() => {
                 service.getSensorDataForTimeframe();
             });

@@ -36,7 +36,7 @@ export default class dataService {
     async parseData() {
         if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
             const backgroundResponse = await fetch(this.backgroundDataFilePath);
-            const backgroundJson = backgroundResponse.json();
+            const backgroundJson = await backgroundResponse.json();
             backgroundJson.data.forEach(entry => {
                 this.backgroundData.push({
                     timestamp: entry.Zeitstempel,
