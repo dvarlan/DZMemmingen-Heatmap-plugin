@@ -1,6 +1,6 @@
 import dateTools from "../tools/dateTools";
 
-const SENSOR_DATA_FILE_PATH = "./src/data/Sensor_2023-08-03.json";
+const SENSOR_DATA_FILE_PATH = "./src/data/SensorData.json";
 const DWD_DAILY_FILE_PATH = "./src/data/DWD_daily_mean.json";
 const DWD_HOURLY_FILE_PATH = "./src/data/DWD_hourly.json";
 
@@ -50,29 +50,33 @@ export default class dataService {
 
         const sensorResponse = await fetch(SENSOR_DATA_FILE_PATH);
         const sensorJson = await sensorResponse.json();
-        sensorJson.data.forEach(entry => {
+        sensorJson.forEach(entry => {
             this.sensorData.push({
                 timestamp: entry.Zeitstempel,
-                value: entry.Wert,
-                label: dateTools.getLabelForTimestamp(entry.Zeitstempel)
+                data: entry.data
             });
         });
-        console.log("[DEBUG] Raw station data: ")
+        console.log("[DEBUG] Raw station data: ");
         console.log(this.sensorData);
     }
 
     getSensorDataForTimeframe() {
-        // TODO
         if (this.mode === 'day') {
             this.sensorData.forEach(entry => {
                 if (entry.timestamp.includes(vcs.ui.store.getters['heatmap/getStartDate'])) {
-                    // Durch Zeit von 0 bis 23 loopen & schauen ob so ein Timestamp existiert
-                    // Wenn ja ersten nehmen
-                    // Wenn nein "No sensor data available" zu Punkt hinzufügen
                     this.sensorDataForTimeframe.push(entry);
                 }
             });
-            console.log("[DEBUG] Station data for timeframe (day): ")
+            console.log("[DEBUG] Station data for timeframe (day): ");
+            console.log(this.sensorDataForTimeframe);
+        } else if (this.mode === 'default') {
+            this.sensorData.forEach(entry => {
+                const currentDate = new Date(entry.timestamp);
+                if (currentDate >= new Date(vcs.ui.store.getters['heatmap/getStartDate']) && currentDate <= new Date(vcs.ui.store.getters['heatmap/getEndDate'])) {
+                    this.sensorDataForTimeframe.push(entry);
+                }
+            });
+            console.log("[DEBUG] Station data for timeframe (default): ");
             console.log(this.sensorDataForTimeframe);
         }
     }
