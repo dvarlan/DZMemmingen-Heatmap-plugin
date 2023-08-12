@@ -82,6 +82,23 @@ export default class dataService {
     }
 
     getBackgroundDataForTimeframe() {
-
+        if (this.mode === 'day') {
+            this.backgroundData.forEach(entry => {
+                if (entry.timestamp.includes(vcs.ui.store.getters['heatmap/getStartDate'])) {
+                    this.backgroundDataForTimeframe.push(entry);
+                }
+            });
+            console.log("[DEBUG] Background data for timeframe (day): ")
+            console.log(this.backgroundDataForTimeframe);
+        } else if (this.mode === 'default') {
+            this.backgroundData.forEach(entry => {
+                const currentDate = new Date(entry.timestamp);
+                if (currentDate >= new Date(vcs.ui.store.getters['heatmap/getStartDate']) && currentDate <= new Date(vcs.ui.store.getters['heatmap/getEndDate'])) {
+                    this.backgroundDataForTimeframe.push(entry);
+                }
+            });
+            console.log("[DEBUG] Background data for timeframe (default): ")
+            console.log(this.backgroundDataForTimeframe);
+        }
     }
 }

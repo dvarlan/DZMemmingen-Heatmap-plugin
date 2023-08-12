@@ -61,6 +61,9 @@ export default {
             const service = new dataService();
             service.parseData().then(() => {
                 service.getSensorDataForTimeframe();
+                if (this.$store.getters['heatmap/usingBackgroundValue']) {
+                    service.getBackgroundDataForTimeframe();
+                }
             });
         }
     }
