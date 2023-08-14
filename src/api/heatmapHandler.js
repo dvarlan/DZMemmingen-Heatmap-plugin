@@ -29,12 +29,20 @@ export default class heatmapProvider {
             }
         } else if (mode === 'default') {
             // Name: Timestamp -> '2023-01-01'
-            for (let day = 0; day <= data.length; day++) {
+            for (let day = 0; day < data.length; day++) {
                 const heatmapContainer = document.createElement("div");
                 heatmapContainer.setAttribute('id', data[day].timestamp);
                 heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
                 heatmapContainerWrapper.appendChild(heatmapContainer);
             }
         }
+    }
+
+    createHeatmapsForContainers() {
+        // Hier auch bei dem 'default' mode den Mittelwert für den Tag berechnen (andere Funktion)
+    }
+
+    changeToNextHeatmap() {
+        // Werden eh der Reihe nach im DOM angeordnet also kann auch einfach darüber iteriert werden
     }
 }
