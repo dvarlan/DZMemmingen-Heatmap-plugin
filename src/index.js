@@ -22,6 +22,9 @@ export default {
         startDate: '2023-01-01',
         endDate: '2023-07-31',
         backgroundValue: false,
+        mode: '',
+        sensorData: [],
+        backgroundData: [],
       },
       mutations: {
         showHeatmap(state) {
@@ -44,6 +47,15 @@ export default {
         },
         setBackgroundValue(state, value) {
           state.backgroundValue = value;
+        },
+        setMode(state, value) {
+          state.mode = value;
+        },
+        setSensorData(state, value) {
+          state.sensorData = value;
+        },
+        setBackgroundData(state, value) {
+          state.backgroundData = value;
         }
       },
       getters: {
@@ -61,6 +73,15 @@ export default {
         },
         usingBackgroundValue(state) {
           return state.backgroundValue;
+        },
+        getMode(state) {
+          return state.mode;
+        },
+        getSensorData(state) {
+          return state.sensorData;
+        },
+        getBackgroundData(state) {
+          return state.backgroundData;
         }
       }
     }

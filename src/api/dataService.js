@@ -15,6 +15,7 @@ export default class dataService {
         this.backgroundDataFilePath = "";
 
         this.getMode();
+        vcs.ui.store.commit('heatmap/setMode', this.mode);
     }
 
     getMode() {
@@ -41,7 +42,7 @@ export default class dataService {
                 this.backgroundData.push({
                     timestamp: entry.Zeitstempel,
                     value: entry.Wert,
-                    label: dateTools.getLabelForTimestamp(entry.Zeitstempel)
+                    label: dateTools.getLabelForTimestamp(entry.Zeitstempel) //TODO: Remove?
                 });
             });
             console.log("[DEBUG] Raw background data: ")
@@ -68,7 +69,6 @@ export default class dataService {
                 }
             });
             console.log("[DEBUG] Station data for timeframe (day): ");
-            console.log(this.sensorDataForTimeframe);
         } else if (this.mode === 'default') {
             this.sensorData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
@@ -77,8 +77,9 @@ export default class dataService {
                 }
             });
             console.log("[DEBUG] Station data for timeframe (default): ");
-            console.log(this.sensorDataForTimeframe);
         }
+        vcs.ui.store.commit('heatmap/setSensorData', Object.freeze(this.sensorDataForTimeframe));
+        console.log(vcs.ui.store.getters['heatmap/getSensorData']);
     }
 
     getBackgroundDataForTimeframe() {
@@ -89,7 +90,6 @@ export default class dataService {
                 }
             });
             console.log("[DEBUG] Background data for timeframe (day): ")
-            console.log(this.backgroundDataForTimeframe);
         } else if (this.mode === 'default') {
             this.backgroundData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
@@ -98,7 +98,8 @@ export default class dataService {
                 }
             });
             console.log("[DEBUG] Background data for timeframe (default): ")
-            console.log(this.backgroundDataForTimeframe);
         }
+        vcs.ui.store.commit('heatmap/setBackgroundData', Object.freeze(this.backgroundDataForTimeframe));
+        console.log(vcs.ui.store.getters['heatmap/getBackgroundData']);
     }
 }
