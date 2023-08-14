@@ -9,4 +9,12 @@ export default class dateTools {
     static getLabelForTimestamp(value) {
         return value.replaceAll("T", " ").replaceAll("-", ".");
     }
+
+    static createLableFromDateAndHour(date, hour) {
+        if (hour < 10) {
+            return `${date} 0${hour}:00:00`;
+        } else {
+            return `${date} ${hour}:00:00`;
+        }
+    }
 }

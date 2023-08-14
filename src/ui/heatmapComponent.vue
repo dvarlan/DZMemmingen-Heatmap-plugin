@@ -14,6 +14,9 @@
         <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
         <br>
         <br>
+        <button @click="test">Test</button>
+        <br>
+        <br>
         <input v-model="heatmapRadiusSize" :disabled="showingHeatmap" type="range" min="1" max="500">
         <br>
         <label>Heatmap radius size: {{ heatmapRadiusSize }}</label>
@@ -40,6 +43,10 @@
 import heatmap from '../api/heatmapProvider';
 import pointProvider from '../api/pointProvider';
 import DatePickerComponent from './datePickerComponent.vue';
+import heatmapProvider from '../api/heatmapHandler';
+
+// Evtl. in mounted
+let myheatmapProvider = new heatmapProvider();
 
 export default {
   name: 'heatmapComponent',
@@ -64,6 +71,10 @@ export default {
     }
   },
   methods: {
+    test() {
+      console.log("[DEBUG] Test function called");
+      myheatmapProvider.createHeatmapContainers();
+    },
     drawStations() {
       console.log("[DEBUG] Drawing stations...");
       const provider = new pointProvider();
