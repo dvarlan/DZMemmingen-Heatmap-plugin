@@ -102,4 +102,60 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setBackgroundData', Object.freeze(this.backgroundDataForTimeframe));
         console.log(vcs.ui.store.getters['heatmap/getBackgroundData']);
     }
+
+    getMinValueForTimeframeDay() {
+        let result = Infinity;
+        for (const entry of this.sensorDataForTimeframe[0].data) {
+            if (entry.data.length > 0) {
+                const minEntryValue = Math.min(...entry.data.map(item => item.Wert));
+                result = Math.min(result, minEntryValue);
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMinValue', result);
+        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
+    }
+
+    getMaxValueForTimeframeDay() {
+        let result = -Infinity;
+        for (const entry of this.sensorDataForTimeframe[0].data) {
+            if (entry.data.length > 0) {
+                const maxEntryValue = Math.max(...entry.data.map(item => item.Wert));
+                result = Math.max(result, maxEntryValue);
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMaxValue', result);
+        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
+    }
+
+    getMinValueForTimeframeDefault() {
+        let result = Infinity;
+        for (const entry of this.sensorDataForTimeframe) {
+            for (const hour of entry.data) {
+                if (hour.data.length > 0) {
+                    for (const stationData of hour.data) {
+                        const value = stationData.Wert;
+                        result = Math.min(result, value);
+                    }
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMinValue', result);
+        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
+    }
+
+    getMaxValueForTimeframeDefault() {
+        let result = -Infinity;
+        for (const entry of this.sensorDataForTimeframe) {
+            for (const hour of entry.data) {
+                if (hour.data.length > 0) {
+                    for (const stationData of hour.data) {
+                        const value = stationData.Wert;
+                        result = Math.max(result, value);
+                    }
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMaxValue', result);
+        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
+    }
 }

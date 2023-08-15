@@ -25,6 +25,8 @@ export default {
         mode: '',
         sensorData: [],
         backgroundData: [],
+        minValue: -1337,
+        maxValue: 1337,
       },
       mutations: {
         showHeatmap(state) {
@@ -56,6 +58,12 @@ export default {
         },
         setBackgroundData(state, value) {
           state.backgroundData = value;
+        },
+        setMinValue(state, value) {
+          state.minValue = value;
+        },
+        setMaxValue(state, value) {
+          state.maxValue = value;
         }
       },
       getters: {
@@ -82,6 +90,12 @@ export default {
         },
         getBackgroundData(state) {
           return state.backgroundData;
+        },
+        getMinValue(state) {
+          return state.minValue;
+        },
+        getMaxValue(state) {
+          return state.maxValue;
         }
       }
     }
