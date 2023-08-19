@@ -6,15 +6,19 @@ export default class dateTools {
         return diffInDays;
     }
 
-    static getLabelForTimestamp(value) {
-        return value.replaceAll("T", " ").replaceAll("-", ".");
+    static getTimeForTimestamp(value, seperator) {
+        return value.split(seperator)[1];
+    }
+
+    static createHourLableFromNumber(hour) {
+        if (hour < 10) {
+            return `0${hour}:00:00`;
+        } else {
+            return `${hour}:00:00`;
+        }
     }
 
     static createLableFromDateAndHour(date, hour) {
-        if (hour < 10) {
-            return `${date} 0${hour}:00:00`;
-        } else {
-            return `${date} ${hour}:00:00`;
-        }
+        return `${date} ${this.createHourLableFromNumber(hour)}`;
     }
 }

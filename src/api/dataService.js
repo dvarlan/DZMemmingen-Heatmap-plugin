@@ -41,8 +41,7 @@ export default class dataService {
             backgroundJson.data.forEach(entry => {
                 this.backgroundData.push({
                     timestamp: entry.Zeitstempel,
-                    value: entry.Wert,
-                    label: dateTools.getLabelForTimestamp(entry.Zeitstempel) //TODO: Remove?
+                    value: entry.Wert
                 });
             });
             console.log("[DEBUG] Raw background data: ")

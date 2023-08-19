@@ -74,6 +74,9 @@ export default {
     test() {
       console.log("[DEBUG] Test function called");
       myheatmapProvider.createHeatmapContainers();
+      if (this.$store.getters['heatmap/getMode'] === 'day') {
+        myheatmapProvider.createHeatmapsForDays();
+      }
     },
     drawStations() {
       console.log("[DEBUG] Drawing stations...");

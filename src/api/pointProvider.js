@@ -36,7 +36,6 @@ export default class pointProvider {
             });
             dataSource.entities.add(entity);
         });
-        console.log(dataSource);
         return dataSource;
     }
 

@@ -1,6 +1,6 @@
 import dateTools from "../tools/dateTools";
 import h337 from "heatmap.js-fix";
-import dataService from "./dataService";
+import util from "../tools/util";
 
 // TODO: Rename
 export default class heatmapProvider {
@@ -8,8 +8,15 @@ export default class heatmapProvider {
     constructor() {
         this.canvasHeight = 1800;
         this.canvasWidth = 2400;
+        this.rawHeatmapBouningBox = {
+            west: 10.165426272431576,
+            south: 47.97753412328743,
+            east: 10.200222844460304,
+            north: 47.990433576113986,
+        };
         this.mode = '';
         this.data = [];
+        this.heatmapData = [];
         this.heatmapConfig = {
             radius: 40,
             maxOpacity: 0.6,
@@ -48,28 +55,74 @@ export default class heatmapProvider {
         }
     }
 
-    createHeatmapsForContainers() {
-        // Hier auch bei dem 'default' mode den Mittelwert für den Tag berechnen (andere Funktion)
-        // In mehrere Funktionen aufteilen
-        if (this.mode === 'day') {
-            for (let hour = 0; hour < 24; hour++) {
-                let heatmapCanvas = h337.create({
-                    container: document.getElementById(dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour)),
-                    radius: this.heatmapConfig.radius,
-                    maxOpacity: this.heatmapConfig.maxOpacity,
-                    minOpacity: this.heatmapConfig.minOpacity,
-                    blur: this.heatmapConfig.blur
-                });
-                // TODO: Check if background value is enabled
-                heatmapCanvas.setData({
-                    min: vcs.ui.store.getters['heatmap/getMinValue'],
-                    max: vcs.ui.store.getters['heatmap/getMaxValue'],
-                    data: dataInstance.heatmapData[time].data //TODO: Convert data in format for heatmap.js
+    createHeatmapsForDays() {
+        for (let hour = 0; hour < 24; hour++) {
+            let heatmapCanvas = h337.create({
+                container: document.getElementById(dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour)),
+                radius: this.heatmapConfig.radius,
+                maxOpacity: this.heatmapConfig.maxOpacity,
+                minOpacity: this.heatmapConfig.minOpacity,
+                blur: this.heatmapConfig.blur
+            });
+
+            heatmapCanvas.setData({
+                min: vcs.ui.store.getters['heatmap/getMinValue'] - 2, // Offsets added for better visualisation when testing
+                max: vcs.ui.store.getters['heatmap/getMaxValue'] + 2, // Offsets added for better visualisation when testing
+                data: this.convertDataForHeatmapDay(hour)
+            });
+        }
+    }
+
+    createHeatmapsForDefault() {
+        // Hier auch bei dem 'default' mode den Mittelwert für den Tag berechnen (util.js Funktion)
+    }
+
+    addHeatmapBackgroundValueDay(currentHour) {
+        // Überprüfen ob 2 Funktionen notwendig sind
+        let backgroundValue = null;
+        vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
+            if (dateTools.getTimeForTimestamp(entry.timestamp, 'T') === dateTools.createHourLableFromNumber(currentHour)) {
+                backgroundValue = entry.value;
+            }
+        });
+        // TODO: Only basic implementation for now
+        for (let i = 0; i < this.canvasWidth; i += 35) {
+            for (let j = 0; j < this.canvasHeight; j += 35) {
+                this.heatmapData.push({
+                    x: i,
+                    y: j,
+                    value: backgroundValue
                 });
             }
-        } else if (this.mode === 'default') {
-
         }
+    }
+
+    addHeatmapBackgroundValueDefault() {
+
+    }
+
+    convertDataForHeatmapDay(currentHour) {
+        this.heatmapData = [];
+        this.data[0].data.forEach(entry => {
+            if (entry.Uhrzeit === dateTools.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
+                entry.data.forEach(station => {
+                    const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBouningBox, this.canvasWidth, this.canvasHeight);
+                    this.heatmapData.push({
+                        x: convertedCoordinates.x,
+                        y: convertedCoordinates.y,
+                        value: station.Wert
+                    });
+                });
+            }
+        });
+        if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
+            this.addHeatmapBackgroundValueDay(currentHour);
+        }
+        return this.heatmapData;
+    }
+
+    convertDataForHeatmapDefault() {
+
     }
 
     changeToNextHeatmap() {
