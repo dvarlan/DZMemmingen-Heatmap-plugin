@@ -74,7 +74,21 @@ export default class heatmapProvider {
     }
 
     createHeatmapsForDefault() {
-        // Hier auch bei dem 'default' mode den Mittelwert für den Tag berechnen (util.js Funktion)
+        for (let day = 0; day < this.data.length; day++) {
+            let heatmapCanvas = h337.create({
+                container: document.getElementById('heatmap-container-wrapper').children[day],
+                radius: this.heatmapConfig.radius,
+                maxOpacity: this.heatmapConfig.maxOpacity,
+                minOpacity: this.heatmapConfig.minOpacity,
+                blur: this.heatmapConfig.blur
+            });
+
+            heatmapCanvas.setData({
+                min: vcs.ui.store.getters['heatmap/getMinValue'] - 2, // Offsets added for better visualisation when testing
+                max: vcs.ui.store.getters['heatmap/getMaxValue'] + 2, // Offsets added for better visualisation when testing
+                data: this.convertDataForHeatmapDefault(day)
+            });
+        }
     }
 
     addHeatmapBackgroundValueDay(currentHour) {
@@ -91,14 +105,24 @@ export default class heatmapProvider {
                 this.heatmapData.push({
                     x: i,
                     y: j,
-                    value: backgroundValue
+                    value: Math.round(backgroundValue)
                 });
             }
         }
     }
 
-    addHeatmapBackgroundValueDefault() {
-
+    addHeatmapBackgroundValueDefault(currentDayIndex) {
+        const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
+        // TODO: Only basic implementation for now
+        for (let i = 0; i < this.canvasWidth; i += 35) {
+            for (let j = 0; j < this.canvasHeight; j += 35) {
+                this.heatmapData.push({
+                    x: i,
+                    y: j,
+                    value: Math.round(backgroundValue)
+                });
+            }
+        }
     }
 
     convertDataForHeatmapDay(currentHour) {
@@ -121,8 +145,19 @@ export default class heatmapProvider {
         return this.heatmapData;
     }
 
-    convertDataForHeatmapDefault() {
-
+    convertDataForHeatmapDefault(currentDayIndex) {
+        this.heatmapData = [];
+        let currentEntryData = [];
+        this.data[currentDayIndex].data.forEach(entry => {
+            if (entry.data.length > 0) {
+                entry.data.forEach(item => currentEntryData.push(item));
+            }
+        });
+        this.heatmapData.push(...util.calculateMeanValueForStations(currentEntryData));
+        if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
+            this.addHeatmapBackgroundValueDefault(currentDayIndex);
+        }
+        return this.heatmapData;
     }
 
     changeToNextHeatmap() {

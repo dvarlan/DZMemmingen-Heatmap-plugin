@@ -76,6 +76,8 @@ export default {
       myheatmapProvider.createHeatmapContainers();
       if (this.$store.getters['heatmap/getMode'] === 'day') {
         myheatmapProvider.createHeatmapsForDays();
+      } else {
+        myheatmapProvider.createHeatmapsForDefault();
       }
     },
     drawStations() {

@@ -1,7 +1,33 @@
 export default class util {
 
-    static calculateMeanValue() {
-        // Objekt übergeben?
+    // TODO: Mappings überprüfen da im Dz Namen für Sensoren fehlen (Hardcoded für Bounding Box & Größe vom 20.08.23)
+    static stationMappings = [
+        { name: 'Schrannenplatz Messpunkt 1', lat: 47.982948, lon: 10.182558, x: 1181, y: 1044 },
+        { name: 'Schrannenplatz Messpunkt 2', lat: 47.982792, lon: 10.181391, x: 1101, y: 1066 },
+        { name: 'Schrannenplatz Messpunkt 3', lat: 47.98288, lon: 10.182168, x: 1154, y: 1054 },
+        { name: 'Weinmarkt Messpunkt 1', lat: 47.984707, lon: 10.180835, x: 1062, y: 799 },
+        { name: 'Weinmarkt Messpunkt 2', lat: 47.984721, lon: 10.181372, x: 1099, y: 797 },
+        { name: 'Weinmarkt Messpunkt 3', lat: 47.984859, lon: 10.182212, x: 1157, y: 777 }
+    ];
+
+    static calculateMeanValueForStations(data) {
+        let result = [];
+        this.stationMappings.forEach(station => {
+            let sum = 0;
+            let amount = 0;
+            data.forEach(dataPoint => {
+                if (dataPoint.Lon === station.lon && dataPoint.Lat === station.lat) {
+                    sum += dataPoint.Wert;
+                    amount++;
+                }
+            });
+            result.push({
+                x: station.x,
+                y: station.y,
+                value: Math.round(sum / amount)
+            });
+        });
+        return result;
     }
 
     static covertLonLatToXY(lat, lon, boundingbox, canvasWidth, canvasHeight) {

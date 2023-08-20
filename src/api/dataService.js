@@ -102,6 +102,7 @@ export default class dataService {
         console.log(vcs.ui.store.getters['heatmap/getBackgroundData']);
     }
 
+    // TODO: Evtl. auch die Hintergrundwerte mit einbeziehen
     getMinValueForTimeframeDay() {
         let result = Infinity;
         for (const entry of this.sensorDataForTimeframe[0].data) {
