@@ -18,8 +18,6 @@ export default class pointProvider {
                 });
             }
         });
-        console.log("[DEBUG] Station Data")
-        console.log(this.stationPositions);
     }
 
     getPointsAsCesiumDataSource() {

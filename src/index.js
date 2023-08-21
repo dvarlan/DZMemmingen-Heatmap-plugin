@@ -27,6 +27,7 @@ export default {
         backgroundData: [],
         minValue: -1337,
         maxValue: 1337,
+        currentLabel: 'Animation is paused',
       },
       mutations: {
         showHeatmap(state) {
@@ -64,6 +65,9 @@ export default {
         },
         setMaxValue(state, value) {
           state.maxValue = value;
+        },
+        setCurrentLabel(state, value) {
+          state.currentLabel = value;
         }
       },
       getters: {
@@ -96,6 +100,9 @@ export default {
         },
         getMaxValue(state) {
           return state.maxValue;
+        },
+        getCurrentLabel(state) {
+          return state.currentLabel;
         }
       }
     }

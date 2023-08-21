@@ -2,13 +2,15 @@ import dateTools from "../tools/dateTools";
 import h337 from "heatmap.js-fix";
 import util from "../tools/util";
 
+const framework = vcs.vcm.Framework.getInstance();
+
 // TODO: Rename
 export default class heatmapProvider {
 
     constructor() {
         this.canvasHeight = 1800;
         this.canvasWidth = 2400;
-        this.rawHeatmapBouningBox = {
+        this.rawHeatmapBoundingBox = {
             west: 10.165426272431576,
             south: 47.97753412328743,
             east: 10.200222844460304,
@@ -17,6 +19,8 @@ export default class heatmapProvider {
         this.mode = '';
         this.data = [];
         this.heatmapData = [];
+        this.heatmapLayer = null;
+        this.currentTimestampIndex = 0;
         this.heatmapConfig = {
             radius: 40,
             maxOpacity: 0.6,
@@ -92,7 +96,7 @@ export default class heatmapProvider {
     }
 
     addHeatmapBackgroundValueDay(currentHour) {
-        // Überprüfen ob 2 Funktionen notwendig sind
+        // TODO: Überprüfen ob 2 Funktionen notwendig sind
         let backgroundValue = null;
         vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
             if (dateTools.getTimeForTimestamp(entry.timestamp, 'T') === dateTools.createHourLableFromNumber(currentHour)) {
@@ -130,7 +134,7 @@ export default class heatmapProvider {
         this.data[0].data.forEach(entry => {
             if (entry.Uhrzeit === dateTools.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
                 entry.data.forEach(station => {
-                    const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBouningBox, this.canvasWidth, this.canvasHeight);
+                    const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
                     this.heatmapData.push({
                         x: convertedCoordinates.x,
                         y: convertedCoordinates.y,
@@ -161,6 +165,28 @@ export default class heatmapProvider {
     }
 
     changeToNextHeatmap() {
-        // Werden eh der Reihe nach im DOM angeordnet also kann auch einfach darüber iteriert werden
+        const map = framework.getActiveMap();
+        map.getScene().imageryLayers.remove(this.heatmapLayer);
+        const currentLabel = document.getElementById('heatmap-container-wrapper').children[this.currentTimestampIndex].getAttribute('id');
+        vcs.ui.store.commit('heatmap/setCurrentLabel', currentLabel);
+        const currentCanvas = document.getElementById('heatmap-container-wrapper').children[this.currentTimestampIndex].children[0];
+
+        this.heatmapLayer = new Cesium.ImageryLayer(
+            new Cesium.SingleTileImageryProvider({
+                url: currentCanvas.toDataURL(),
+                rectangle: Cesium.Rectangle.fromDegrees(
+                    this.rawHeatmapBoundingBox.west,
+                    this.rawHeatmapBoundingBox.south,
+                    this.rawHeatmapBoundingBox.east,
+                    this.rawHeatmapBoundingBox.north
+                )
+            })
+        );
+        map.getScene().imageryLayers.add(this.heatmapLayer);
+        if (this.currentTimestampIndex === document.getElementById('heatmap-container-wrapper').children.length - 1) {
+            this.currentTimestampIndex = 0;
+        } else {
+            this.currentTimestampIndex++;
+        }
     }
 }

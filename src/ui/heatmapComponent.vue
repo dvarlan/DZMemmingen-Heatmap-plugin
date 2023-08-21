@@ -15,6 +15,7 @@
         <br>
         <br>
         <button @click="test">Test</button>
+        <button @click="testAnimation">Test Animation</button>
         <br>
         <br>
         <input v-model="heatmapRadiusSize" :disabled="showingHeatmap" type="range" min="1" max="500">
@@ -79,6 +80,10 @@ export default {
       } else {
         myheatmapProvider.createHeatmapsForDefault();
       }
+    },
+    testAnimation() {
+      myheatmapProvider.changeToNextHeatmap();
+      console.log(this.$store.getters['heatmap/getCurrentLabel']);
     },
     drawStations() {
       console.log("[DEBUG] Drawing stations...");
