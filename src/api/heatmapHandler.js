@@ -189,4 +189,8 @@ export default class heatmapProvider {
             this.currentTimestampIndex++;
         }
     }
+
+    reset() {
+        
+    }
 }

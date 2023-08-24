@@ -8,24 +8,15 @@
       <DatePickerComponent></DatePickerComponent>
       <div class="buttons">
         <hr>
-        <button class="vcm-btn-project-list" @click="drawStations">Add Stationpoints</button>
+        <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Add Stationpoints</button>
         <br>
         <br>
         <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
         <br>
-        <br>
-        <button @click="test">Test</button>
-        <button @click="testAnimation">Test Animation</button>
-        <br>
-        <br>
-        <input v-model="heatmapRadiusSize" :disabled="showingHeatmap" type="range" min="1" max="500">
-        <br>
-        <label>Heatmap radius size: {{ heatmapRadiusSize }}</label>
-        <br>
         <div v-if="showingHeatmap" class="animation-controls">
           <br>
           <h3>Animation controls</h3>
-          <p v-if="currentHeatmapTime">Current time: {{ currentHeatmapTime }}</p>
+          <p>Current Heatmap: {{ heatmapLabel }}</p>
           <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
           <br>
           <label>Animation Speed: {{ animationSpeed }} sec.</label>
@@ -41,21 +32,22 @@
   </div>
 </template>
 <script>
-import heatmap from '../api/heatmapProvider';
 import pointProvider from '../api/pointProvider';
 import DatePickerComponent from './datePickerComponent.vue';
 import heatmapProvider from '../api/heatmapHandler';
 
 // Evtl. in mounted
 let myheatmapProvider = new heatmapProvider();
+let provider = new pointProvider();
 
 export default {
   name: 'heatmapComponent',
+  components: { DatePickerComponent },
   data() {
     return {
-      currentHeatmapTime: this.getCurrentTime(),
-      heatmapRadiusSize: 40,
       animationId: null,
+      heatmapLabel: this.$store.getters['heatmap/getCurrentLabel'],
+      showingStations: false,
     };
   },
   computed: {
@@ -72,22 +64,9 @@ export default {
     }
   },
   methods: {
-    test() {
-      console.log("[DEBUG] Test function called");
-      myheatmapProvider.createHeatmapContainers();
-      if (this.$store.getters['heatmap/getMode'] === 'day') {
-        myheatmapProvider.createHeatmapsForDays();
-      } else {
-        myheatmapProvider.createHeatmapsForDefault();
-      }
-    },
-    testAnimation() {
-      myheatmapProvider.changeToNextHeatmap();
-      console.log(this.$store.getters['heatmap/getCurrentLabel']);
-    },
     drawStations() {
       console.log("[DEBUG] Drawing stations...");
-      const provider = new pointProvider();
+      this.showingStations = true;
       provider.fetchStationPoints().then(() => {
         provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
       });
@@ -95,26 +74,17 @@ export default {
     drawHeatmap() {
       console.log("[DEBUG] Drawing heatmap...");
       this.$store.commit('heatmap/showHeatmap');
-      const heatmapInstance = heatmap.getInstance();
-      heatmapInstance.heatmapConfig.radius = this.heatmapRadiusSize;
-      heatmapInstance.createHeatmapContainers();
-      heatmapInstance.createHeatmapCanvasForContainers();
+      myheatmapProvider.createHeatmapContainers();
+      if (this.$store.getters['heatmap/getMode'] === 'day') {
+        myheatmapProvider.createHeatmapsForDays();
+      } else {
+        myheatmapProvider.createHeatmapsForDefault();
+      }
     },
     changeHeatmapCanvas() {
       console.log("[DEBUG] Changing heatmap canvas...");
-      const heatmapInstance = heatmap.getInstance();
-      heatmapInstance.changeToNextHeatmapCanvas();
-      this.getCurrentTime();
-    },
-    getCurrentTime() {
-      const heatmapInstance = heatmap.getInstance();
-      let time = heatmapInstance.currentTime - 1;
-      if (time >= 10) {
-        this.currentHeatmapTime = `${time}:00`;
-      }
-      else {
-        this.currentHeatmapTime = `0${time}:00`;
-      }
+      myheatmapProvider.changeToNextHeatmap();
+      this.heatmapLabel = this.$store.getters['heatmap/getCurrentLabel'];
     },
     startAnimation() {
       this.stopAnimation();
@@ -127,18 +97,15 @@ export default {
       }
     },
     clear() {
+      // TODO: Anpassungen in HeatmapHandler, PointProvider & Store
       this.stopAnimation();
-      this.currentHeatmapTime = null;
       this.$store.commit('heatmap/resetAnimationSpeed');
-      const heatmapInstance = heatmap.getInstance();
-      heatmapInstance.clearLayers();
       this.$store.commit('heatmap/clearHeatmap');
     }
   },
   beforeDestroy() {
     this.stopAnimation();
-  },
-  components: { DatePickerComponent }
+  }
 };
 </script>
 <style scoped>
