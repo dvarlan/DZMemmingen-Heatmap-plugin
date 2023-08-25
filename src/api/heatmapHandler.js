@@ -50,9 +50,9 @@ export default class heatmapProvider {
             }
         } else if (this.mode === 'default') {
             // Name: Timestamp -> '2023-01-01'
-            for (let day = 0; day < this.data.length; day++) {
+            for (const day of this.data) {
                 const heatmapContainer = document.createElement("div");
-                heatmapContainer.setAttribute('id', this.data[day].timestamp);
+                heatmapContainer.setAttribute('id', day.timestamp);
                 heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
                 heatmapContainerWrapper.appendChild(heatmapContainer);
             }
