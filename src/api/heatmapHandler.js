@@ -20,9 +20,11 @@ export default class heatmapProvider {
         this.data = [];
         this.heatmapData = [];
         this.heatmapLayer = null;
+        this.backgroundBufferSize = 100;
+        this.backgroundDensity = 25;
         this.currentTimestampIndex = 0;
         this.heatmapConfig = {
-            radius: 40,
+            radius: 60,
             maxOpacity: 0.6,
             minOpacity: 0,
             blur: 0.85
@@ -96,35 +98,54 @@ export default class heatmapProvider {
     }
 
     addHeatmapBackgroundValueDay(currentHour) {
-        // TODO: Überprüfen ob 2 Funktionen notwendig sind
         let backgroundValue = null;
+        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
         vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
             if (dateTools.getTimeForTimestamp(entry.timestamp, 'T') === dateTools.createHourLableFromNumber(currentHour)) {
                 backgroundValue = entry.value;
             }
         });
-        // TODO: Only basic implementation for now
-        for (let i = 0; i < this.canvasWidth; i += 35) {
-            for (let j = 0; j < this.canvasHeight; j += 35) {
-                this.heatmapData.push({
+
+        for (let i = 0; i < this.canvasWidth; i += this.backgroundDensity) {
+            for (let j = 0; j < this.canvasHeight; j += this.backgroundDensity) {
+                let point = {
                     x: i,
                     y: j,
                     value: Math.round(backgroundValue)
-                });
+                };
+                // Only perform the check for points inside of a buffered BoundingBox around the stations
+                if (util.isPointInBufferdBoundingBox(point)) {
+                    for (const buffer of stationBuffers) {
+                        if (util.isPointInBuffer(point, buffer)) {
+                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        }
+                    }
+                }
+                this.heatmapData.push(point);
             }
         }
     }
 
     addHeatmapBackgroundValueDefault(currentDayIndex) {
         const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
-        // TODO: Only basic implementation for now
-        for (let i = 0; i < this.canvasWidth; i += 35) {
-            for (let j = 0; j < this.canvasHeight; j += 35) {
-                this.heatmapData.push({
+        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
+
+        for (let i = 0; i < this.canvasWidth; i += this.backgroundDensity) {
+            for (let j = 0; j < this.canvasHeight; j += this.backgroundDensity) {
+                let point = {
                     x: i,
                     y: j,
                     value: Math.round(backgroundValue)
-                });
+                };
+                // Only perform the check for points inside of a buffered BoundingBox around the stations
+                if (util.isPointInBufferdBoundingBox(point)) {
+                    for (const buffer of stationBuffers) {
+                        if (util.isPointInBuffer(point, buffer)) {
+                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        }
+                    }
+                }
+                this.heatmapData.push(point);
             }
         }
     }

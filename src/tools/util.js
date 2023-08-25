@@ -10,6 +10,14 @@ export default class util {
         { name: 'Weinmarkt Messpunkt 3', lat: 47.984859, lon: 10.182212, x: 1157, y: 777 }
     ];
 
+    // Für einen Buffer der größe 50
+    static bufferedBoundingBox = {
+        minX: 1012,
+        maxX: 1231,
+        minY: 727,
+        maxY: 1116
+    };
+
     static calculateMeanValueForStations(data) {
         let result = [];
         this.stationMappings.forEach(station => {
@@ -28,6 +36,38 @@ export default class util {
             });
         });
         return result;
+    }
+
+    static iterpolateValues(stationValue, backgroundValue) {
+        return Math.round((stationValue + backgroundValue) / 2);
+    }
+
+    static createBufferForPoint(point, bufferSize) {
+        return {
+            xMin: point.x - bufferSize,
+            xMax: point.x + bufferSize,
+            yMin: point.y - bufferSize,
+            yMax: point.y + bufferSize,
+            value: point.value
+        };
+    }
+
+    static isPointInBuffer(point, buffer) {
+        return (
+            point.x >= buffer.xMin &&
+            point.x <= buffer.xMax &&
+            point.y >= buffer.yMin &&
+            point.y <= buffer.yMax
+        );
+    }
+
+    static isPointInBufferdBoundingBox(point) {
+        return (
+            point.x >= this.bufferedBoundingBox.minX &&
+            point.x <= this.bufferedBoundingBox.maxX &&
+            point.y >= this.bufferedBoundingBox.minY &&
+            point.y <= this.bufferedBoundingBox.maxY
+        );
     }
 
     static covertLonLatToXY(lat, lon, boundingbox, canvasWidth, canvasHeight) {
