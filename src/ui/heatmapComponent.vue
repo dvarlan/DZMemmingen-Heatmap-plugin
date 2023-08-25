@@ -6,8 +6,8 @@
     </div>
     <div class="scroll-wrap">
       <DatePickerComponent></DatePickerComponent>
-      <div class="buttons">
-        <hr>
+      <hr>
+      <div v-if="selectionSubmitted" class="buttons">
         <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Add Stationpoints</button>
         <br>
         <br>
@@ -47,12 +47,17 @@ export default {
     return {
       animationId: null,
       heatmapLabel: this.$store.getters['heatmap/getCurrentLabel'],
-      showingStations: false,
     };
   },
   computed: {
     showingHeatmap() {
       return this.$store.getters['heatmap/isHeatmapVisible'];
+    },
+    selectionSubmitted() {
+      return this.$store.getters['heatmap/isSelectionSubmitted'];
+    },
+    showingStations() {
+      return this.$store.getters['heatmap/showingStations'];
     },
     animationSpeed: {
       get() {
@@ -66,10 +71,10 @@ export default {
   methods: {
     drawStations() {
       console.log("[DEBUG] Drawing stations...");
-      this.showingStations = true;
       provider.fetchStationPoints().then(() => {
         provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
       });
+      this.$store.commit('heatmap/showStations');
     },
     drawHeatmap() {
       console.log("[DEBUG] Drawing heatmap...");
@@ -97,10 +102,11 @@ export default {
       }
     },
     clear() {
-      // TODO: Anpassungen in HeatmapHandler, PointProvider & Store
       this.stopAnimation();
-      this.$store.commit('heatmap/resetAnimationSpeed');
-      this.$store.commit('heatmap/clearHeatmap');
+      provider.clear();
+      myheatmapProvider.clear();
+      this.$store.commit('heatmap/reset');
+      this.heatmapLabel = this.$store.getters['heatmap/getCurrentLabel'];
     }
   },
   beforeDestroy() {

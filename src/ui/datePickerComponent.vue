@@ -1,7 +1,7 @@
 <template>
     <div v-if="!selectionSubmitted" class="date-picker">
         <hr>
-        <p>Select the timeframe for the heatmap visualisation</p>
+        <p>Please select the timeframe for the Heatmap visualisation below</p>
         <label for="start-date">Start: </label>
         <input @input="event => startDate = event.target.value" :value="startDate" style="margin-right: 5px;"
             name="start-date" min="2023-01-01" max="2023-07-31" type="date">
@@ -34,7 +34,7 @@ import dataService from "../api/dataService";
 export default {
     data() {
         return {
-            selectionSubmitted: false,
+
         }
     },
     computed: {
@@ -60,6 +60,14 @@ export default {
             },
             set(value) {
                 this.$store.commit('heatmap/setBackgroundValue', value);
+            }
+        },
+        selectionSubmitted: {
+            get() {
+                return this.$store.getters['heatmap/isSelectionSubmitted'];
+            },
+            set() {
+                this.$store.commit('heatmap/submitSelection');
             }
         }
     },

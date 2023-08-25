@@ -18,6 +18,7 @@ export default {
     store: {
       state: {
         showingHeatmap: false,
+        showingStations: false,
         animationSpeed: 1,
         startDate: '2023-01-01',
         endDate: '2023-07-31',
@@ -28,19 +29,17 @@ export default {
         minValue: -1337,
         maxValue: 1337,
         currentLabel: 'The animation is currently paused',
+        selectionSubmitted: false,
       },
       mutations: {
         showHeatmap(state) {
           state.showingHeatmap = true;
         },
-        clearHeatmap(state) {
-          state.showingHeatmap = false;
+        showStations(state) {
+          state.showingStations = true;
         },
         changeAnimationSpeed(state, value) {
           state.animationSpeed = value;
-        },
-        resetAnimationSpeed(state) {
-          state.animationSpeed = 1;
         },
         setStartDate(state, value) {
           state.startDate = value;
@@ -68,11 +67,32 @@ export default {
         },
         setCurrentLabel(state, value) {
           state.currentLabel = value;
+        },
+        submitSelection(state) {
+          state.selectionSubmitted = true;
+        },
+        reset(state) {
+          state.showingHeatmap = false;
+          state.showingStations = false;
+          state.animationSpeed = 1;
+          state.startDate = '2023-01-01';
+          state.endDate = '2023-07-31';
+          state.backgroundValue = false;
+          state.mode = '';
+          state.sensorData = [];
+          state.backgroundData = [];
+          state.minValue = -1337;
+          state.maxValue = 1337;
+          state.currentLabel = 'The animation is currently paused';
+          state.selectionSubmitted = false;
         }
       },
       getters: {
         isHeatmapVisible(state) {
           return state.showingHeatmap;
+        },
+        showingStations(state) {
+          return state.showingStations;
         },
         currentAnimationSpeed(state) {
           return state.animationSpeed;
@@ -103,6 +123,9 @@ export default {
         },
         getCurrentLabel(state) {
           return state.currentLabel;
+        },
+        isSelectionSubmitted(state) {
+          return state.selectionSubmitted;
         }
       }
     }

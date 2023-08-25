@@ -190,7 +190,12 @@ export default class heatmapProvider {
         }
     }
 
-    reset() {
-        
+    clear() {
+        let heatmapContainer = document.getElementById("heatmap-container-wrapper");
+        if (heatmapContainer) {
+            heatmapContainer.remove();
+        }
+        framework.getActiveMap().getScene().imageryLayers.remove(this.heatmapLayer);
+        this.currentTimestampIndex = 0;
     }
 }
