@@ -1,9 +1,3 @@
-"""
-Vor dem Einlesen der Datei muss der folgende Ausdruck aus jeder Zeile entfernt werden " �C".
-Dies würde sonst beim Einlesen mit Pandas zu der folgenden Fehlermeldung führen.
-Ebenfalls wird der ursprüngliche Header ignoriert da dieser logisch nicht zu dem Dataframe passt.
-"""
-
 import pandas as pd
 import json
 import time
