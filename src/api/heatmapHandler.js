@@ -72,8 +72,8 @@ export default class heatmapProvider {
             });
 
             heatmapCanvas.setData({
-                min: vcs.ui.store.getters['heatmap/getMinValue'] - 2, // Offsets added for better visualisation when testing
-                max: vcs.ui.store.getters['heatmap/getMaxValue'] + 2, // Offsets added for better visualisation when testing
+                min: vcs.ui.store.getters['heatmap/getMinValue'],
+                max: vcs.ui.store.getters['heatmap/getMaxValue'],
                 data: this.convertDataForHeatmapDay(hour)
             });
         }
@@ -90,8 +90,8 @@ export default class heatmapProvider {
             });
 
             heatmapCanvas.setData({
-                min: vcs.ui.store.getters['heatmap/getMinValue'] - 2, // Offsets added for better visualisation when testing
-                max: vcs.ui.store.getters['heatmap/getMaxValue'] + 2, // Offsets added for better visualisation when testing
+                min: vcs.ui.store.getters['heatmap/getMinValue'],
+                max: vcs.ui.store.getters['heatmap/getMaxValue'],
                 data: this.convertDataForHeatmapDefault(day)
             });
         }

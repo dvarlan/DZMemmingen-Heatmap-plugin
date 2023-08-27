@@ -102,7 +102,6 @@ export default class dataService {
         console.log(vcs.ui.store.getters['heatmap/getBackgroundData']);
     }
 
-    // TODO: Evtl. auch die Hintergrundwerte mit einbeziehen
     getMinValueForTimeframeDay() {
         let result = Infinity;
         for (const entry of this.sensorDataForTimeframe[0].data) {
@@ -111,7 +110,15 @@ export default class dataService {
                 result = Math.min(result, minEntryValue);
             }
         }
-        vcs.ui.store.commit('heatmap/setMinValue', result);
+        if (this.backgroundDataForTimeframe.length > 0) {
+            for (const entry of this.backgroundDataForTimeframe) {
+                const currentValue = parseInt(entry.value);
+                if (currentValue < result) {
+                    result = currentValue;
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMinValue', Math.round(result));
         console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
@@ -123,8 +130,16 @@ export default class dataService {
                 result = Math.max(result, maxEntryValue);
             }
         }
-        vcs.ui.store.commit('heatmap/setMaxValue', result);
-        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
+        if (this.backgroundDataForTimeframe.length > 0) {
+            for (const entry of this.backgroundDataForTimeframe) {
+                const currentValue = parseInt(entry.value);
+                if (currentValue > result) {
+                    result = currentValue;
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMaxValue', Math.round(result));
+        console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 
     getMinValueForTimeframeDefault() {
@@ -139,7 +154,15 @@ export default class dataService {
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMinValue', result);
+        if (this.backgroundDataForTimeframe.length > 0) {
+            for (const entry of this.backgroundDataForTimeframe) {
+                const currentValue = parseInt(entry.value);
+                if (currentValue < result) {
+                    result = currentValue;
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMinValue', Math.round(result));
         console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
@@ -155,7 +178,15 @@ export default class dataService {
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMaxValue', result);
-        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
+        if (this.backgroundDataForTimeframe.length > 0) {
+            for (const entry of this.backgroundDataForTimeframe) {
+                const currentValue = parseInt(entry.value);
+                if (currentValue > result) {
+                    result = currentValue;
+                }
+            }
+        }
+        vcs.ui.store.commit('heatmap/setMaxValue', Math.round(result));
+        console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 }
