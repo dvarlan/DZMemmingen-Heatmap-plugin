@@ -17,14 +17,13 @@ df.Wert = df.Wert.round().astype(int)
 
 # Koordinaten zu den jeweiligen Stationen hinzufügen
 
-# TODO: Mappings überprüfen da im Dz Namen für Sensoren fehlen
 sensor_mappings = {
-    'Schrannenplatz Messpunkt 1': {'lat': 47.982948, 'lon': 10.182558},
-    'Schrannenplatz Messpunkt 2': {'lat': 47.982792, 'lon': 10.181391},
-    'Schrannenplatz Messpunkt 3': {'lat': 47.98288, 'lon': 10.182168},
-    'Weinmarkt Messpunkt 1': {'lat': 47.984707, 'lon': 10.180835},
-    'Weinmarkt Messpunkt 2': {'lat': 47.984721, 'lon': 10.181372},
-    'Weinmarkt Messpunkt 3': {'lat': 47.984859, 'lon': 10.182212}
+    'Schrannenplatz Messpunkt 1': {'lat': 47.982948, 'lon': 10.182558}, # Neuer Name: Schrannenplatz Osten
+    'Schrannenplatz Messpunkt 2': {'lat': 47.982792, 'lon': 10.181391}, # Neuer Name: Schrannenplatz Westen
+    'Schrannenplatz Messpunkt 3': {'lat': 47.98288, 'lon': 10.182168}, # Neuer Name: Schrannenplatz Mitte
+    'Weinmarkt Messpunkt 1': {'lat': 47.984707, 'lon': 10.180835}, # Neuer Name: Weinmarkt Mitte
+    'Weinmarkt Messpunkt 2': {'lat': 47.984859, 'lon': 10.182212}, # Neuer Name: Weinmarkt Westen
+    'Weinmarkt Messpunkt 3': {'lat': 47.984721, 'lon': 10.181372} # Neuer Name: Weinmarkt Osten
 }
 
 

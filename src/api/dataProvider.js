@@ -55,7 +55,7 @@ export default class dataProvider {
 
                     json.features.forEach(station => {
                         if (station.properties['properties/activeFlag'] === 'True') {
-                            
+
                             const heatmapInstance = heatmap.getInstance();
                             let convertedPoint = this.covertLonLatToXY(station.geometry.coordinates[1], station.geometry.coordinates[0], heatmapInstance.rawHeatmapBouningBox, heatmapInstance.canvasWidth, heatmapInstance.canvasHeight);
 
