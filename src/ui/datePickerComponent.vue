@@ -16,7 +16,7 @@
         <div class="tooltip">
             <p>A background temperature value from the DWD (Deutscher Wetterdienst) will be inserted.
                 <br>
-                <span style="font-weight: bold;">This is going to slow down the heatmap generation for longer
+                <span style="font-weight: bold;">This might slow down the heatmap generation for longer
                     timespans.</span>
             </p>
         </div>
