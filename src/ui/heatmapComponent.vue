@@ -78,13 +78,13 @@ export default {
     },
     drawHeatmap() {
       console.log("[DEBUG] Drawing heatmap...");
-      this.$store.commit('heatmap/showHeatmap');
       myheatmapProvider.createHeatmapContainers();
       if (this.$store.getters['heatmap/getMode'] === 'day') {
         myheatmapProvider.createHeatmapsForDays();
       } else {
         myheatmapProvider.createHeatmapsForDefault();
       }
+      this.$store.commit('heatmap/showHeatmap');
     },
     changeHeatmapCanvas() {
       console.log("[DEBUG] Changing heatmap canvas...");

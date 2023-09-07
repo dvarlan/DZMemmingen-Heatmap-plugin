@@ -20,7 +20,7 @@
                     timespans.</span>
             </p>
         </div>
-        <button @click="submitSelection">Submit</button>
+        <button @click.once="submitSelection">Submit</button>
     </div>
     <div v-else class="date-picker-infos">
         <p v-if="startDate === endDate">Current Timeframe: <span class="highlighted-text">{{ startDate }} (24hrs)</span></p>
@@ -74,7 +74,6 @@ export default {
     },
     methods: {
         submitSelection() {
-            this.selectionSubmitted = true;
             const service = new dataService();
             service.parseData().then(() => {
                 service.getSensorDataForTimeframe();
@@ -90,6 +89,7 @@ export default {
                     service.getMinValueForTimeframeDefault();
                     service.getMaxValueForTimeframeDefault();
                 }
+                this.selectionSubmitted = true;
             });
         }
     }
