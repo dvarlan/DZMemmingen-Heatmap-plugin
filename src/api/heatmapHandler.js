@@ -22,6 +22,8 @@ export default class heatmapProvider {
         this.heatmapLayer = null;
         this.backgroundBufferSize = 100;
         this.backgroundDensity = 25;
+        this.backgroundHeightOffset = 550;
+        this.backgroundWidthOffset = 900;
         this.currentTimestampIndex = 0;
         this.heatmapConfig = {
             radius: 60,
@@ -106,8 +108,8 @@ export default class heatmapProvider {
             }
         });
 
-        for (let i = 0; i < this.canvasWidth; i += this.backgroundDensity) {
-            for (let j = 0; j < this.canvasHeight; j += this.backgroundDensity) {
+        for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
+            for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
                 let point = {
                     x: i,
                     y: j,
@@ -130,8 +132,8 @@ export default class heatmapProvider {
         const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
         let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
 
-        for (let i = 0; i < this.canvasWidth; i += this.backgroundDensity) {
-            for (let j = 0; j < this.canvasHeight; j += this.backgroundDensity) {
+        for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
+            for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
                 let point = {
                     x: i,
                     y: j,
