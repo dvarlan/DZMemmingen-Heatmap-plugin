@@ -23,6 +23,14 @@
           <br>
           <button @click="startAnimation">Start / Resume</button>
           <button @click="stopAnimation">Stop</button>
+          <br>
+          <br>
+          <h3>Legend</h3>
+          <br>
+          <div class="color-gradiant">
+            <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
+            <p id="max-value">{{ this.$store.getters['heatmap/getMaxValue'] + "°C" }}</p>
+          </div>
         </div>
         <br>
         <button class="vcm-btn-project-list" @click="clear">Clear</button>
@@ -136,5 +144,28 @@ h2 {
 .animation-controls button {
   margin-left: 6px;
   margin-top: 15px;
+}
+
+.color-gradiant {
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  font-weight: bold;
+  background: linear-gradient(to right,
+      rgb(0, 0, 255) 25%,
+      rgb(0, 255, 0) 55%,
+      yellow 85%,
+      rgb(255, 0, 0) 100%);
+
+  #min-value {
+    color: white;
+    margin-top: 2px;
+    padding-left: 2px;
+  }
+
+  #max-value {
+    margin-top: 2px;
+    padding-right: 2px;
+  }
 }
 </style>
