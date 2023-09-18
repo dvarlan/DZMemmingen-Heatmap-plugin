@@ -26,10 +26,10 @@
           <br>
           <br>
           <h3>Legend</h3>
-          <br>
+          <p>This legend has to be considered for each Heatmap individually.</p>
           <div class="color-gradiant">
-            <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
-            <p id="max-value">{{ this.$store.getters['heatmap/getMaxValue'] + "°C" }}</p>
+            <p id="min-value">Colder</p>
+            <p id="max-value">Hotter</p>
           </div>
         </div>
         <br>
