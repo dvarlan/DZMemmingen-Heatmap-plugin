@@ -31,6 +31,7 @@
 
 <script>
 import dataService from "../api/dataService";
+import dateTools from "../tools/dateTools";
 
 export default {
     data() {
@@ -74,6 +75,14 @@ export default {
     },
     methods: {
         submitSelection() {
+
+            if (dateTools.getInclusiveDaysBetweenDates(this.startDate, this.endDate) <= 0) {
+                let temp = null;
+                temp = this.startDate;
+                this.startDate = this.endDate;
+                this.endDate = temp; 
+            }
+
             const service = new dataService();
             service.parseData().then(() => {
                 service.getSensorDataForTimeframe();
