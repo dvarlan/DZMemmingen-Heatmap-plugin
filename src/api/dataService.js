@@ -1,4 +1,5 @@
 import dateTools from "../tools/dateTools";
+import util from "../tools/util";
 
 const SENSOR_DATA_FILE_PATH = "./src/data/SensorData.json";
 const DWD_DAILY_FILE_PATH = "./src/data/DWD_daily_mean.json";
@@ -142,18 +143,27 @@ export default class dataService {
         console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 
-    getMinValueForTimeframeDefault() {
-        let result = Infinity;
+    getMeanValuesForTimeframeDefault() {
+        let result = [];
         for (const entry of this.sensorDataForTimeframe) {
-            for (const hour of entry.data) {
-                if (hour.data.length > 0) {
-                    for (const stationData of hour.data) {
-                        const value = stationData.Wert;
-                        result = Math.min(result, value);
-                    }
+            entry.data.forEach(sensorvalue => {
+                if (sensorvalue.data.length > 0) {
+                    result.push(...util.calculateMeanValueForStations(sensorvalue.data));
                 }
-            }
+            })
         }
+        return result;
+    }
+
+    getMinValueForTimeframeDefault() {
+        const meanValues = this.getMeanValuesForTimeframeDefault();
+        let result = Infinity;
+        meanValues.forEach(entry => {
+            if (!isNaN(entry.value)) {
+                result = Math.min(result, entry.value);
+                console.log(result + "Entry: " + entry.value);
+            }
+        });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
                 const currentValue = parseInt(entry.value);
@@ -167,17 +177,13 @@ export default class dataService {
     }
 
     getMaxValueForTimeframeDefault() {
+        const meanValues = this.getMeanValuesForTimeframeDefault();
         let result = -Infinity;
-        for (const entry of this.sensorDataForTimeframe) {
-            for (const hour of entry.data) {
-                if (hour.data.length > 0) {
-                    for (const stationData of hour.data) {
-                        const value = stationData.Wert;
-                        result = Math.max(result, value);
-                    }
-                }
+        meanValues.forEach(entry => {
+            if (!isNaN(entry.value)) {
+                result = Math.max(result, entry.value);
             }
-        }
+        });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
                 const currentValue = parseInt(entry.value);
