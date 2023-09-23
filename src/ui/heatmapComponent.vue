@@ -25,11 +25,11 @@
           <button @click="stopAnimation">Stop</button>
           <br>
           <br>
-          <h3>Legend</h3>
-          <p>This legend has to be considered for each Heatmap individually.</p>
+          <h3>Legend for current Timeframe</h3>
+          <br>
           <div class="color-gradiant">
-            <p id="min-value">Colder</p>
-            <p id="max-value">Hotter</p>
+            <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
+            <p id="max-value">{{ this.$store.getters['heatmap/getMaxValue'] + "°C" }}</p>
           </div>
         </div>
         <br>

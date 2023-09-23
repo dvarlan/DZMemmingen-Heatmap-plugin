@@ -161,9 +161,7 @@ export default class dataService {
         const meanValues = this.getMeanValuesForTimeframeDefault();
         let result = Infinity;
         meanValues.forEach(entry => {
-            if (!isNaN(entry.value)) {
-                result = Math.min(result, entry.value);
-            }
+            result = Math.min(result, entry.value);
         });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
@@ -181,9 +179,7 @@ export default class dataService {
         const meanValues = this.getMeanValuesForTimeframeDefault();
         let result = -Infinity;
         meanValues.forEach(entry => {
-            if (!isNaN(entry.value)) {
-                result = Math.max(result, entry.value);
-            }
+            result = Math.max(result, entry.value);
         });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
