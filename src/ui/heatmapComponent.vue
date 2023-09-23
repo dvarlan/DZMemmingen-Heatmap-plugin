@@ -7,7 +7,10 @@
     <div class="scroll-wrap">
       <DatePickerComponent></DatePickerComponent>
       <hr>
-      <div v-if="selectionSubmitted" class="buttons">
+      <div v-if="isLoading" class="loading-screen">
+        <h1>Generating Heatmaps please wait...</h1>
+      </div>
+      <div v-if="selectionSubmitted && !isLoading" class="buttons">
         <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Add Stationpoints</button>
         <br>
         <br>
@@ -55,6 +58,7 @@ export default {
     return {
       animationId: null,
       heatmapLabel: this.$store.getters['heatmap/getCurrentLabel'],
+      isLoading: false,
     };
   },
   computed: {
@@ -85,14 +89,18 @@ export default {
       this.$store.commit('heatmap/showStations');
     },
     drawHeatmap() {
-      console.log("[DEBUG] Drawing heatmap...");
-      myheatmapProvider.createHeatmapContainers();
-      if (this.$store.getters['heatmap/getMode'] === 'day') {
-        myheatmapProvider.createHeatmapsForDays();
-      } else {
-        myheatmapProvider.createHeatmapsForDefault();
-      }
-      this.$store.commit('heatmap/showHeatmap');
+      this.isLoading = true;
+      console.log("[DEBUG] Drawing heatmap... ");
+      window.setTimeout(() => {
+        myheatmapProvider.createHeatmapContainers();
+        if (this.$store.getters['heatmap/getMode'] === 'day') {
+          myheatmapProvider.createHeatmapsForDays();
+        } else {
+          myheatmapProvider.createHeatmapsForDefault();
+        }
+        this.$store.commit('heatmap/showHeatmap');
+        this.isLoading = false;
+      }, 10)
     },
     changeHeatmapCanvas() {
       console.log("[DEBUG] Changing heatmap canvas...");
@@ -167,5 +175,9 @@ h2 {
     margin-top: 2px;
     padding-right: 2px;
   }
+}
+
+.loading-screen {
+  pointer-events: none;
 }
 </style>
