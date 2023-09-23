@@ -145,12 +145,14 @@ export default class dataService {
 
     getMeanValuesForTimeframeDefault() {
         let result = [];
-        for (const entry of this.sensorDataForTimeframe) {
-            entry.data.forEach(sensorvalue => {
-                if (sensorvalue.data.length > 0) {
-                    result.push(...util.calculateMeanValueForStations(sensorvalue.data));
+        for (const day of this.sensorDataForTimeframe) {
+            let currentData = [];
+            day.data.forEach(hour => {
+                if (hour.data.length > 0) {
+                    currentData.push(hour.data);
                 }
-            })
+            });
+            result.push(...util.calculateMeanValueForStations(...currentData));
         }
         return result;
     }
@@ -161,7 +163,6 @@ export default class dataService {
         meanValues.forEach(entry => {
             if (!isNaN(entry.value)) {
                 result = Math.min(result, entry.value);
-                console.log(result + "Entry: " + entry.value);
             }
         });
         if (this.backgroundDataForTimeframe.length > 0) {

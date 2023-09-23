@@ -28,6 +28,9 @@ export default class util {
                     amount++;
                 }
             });
+            if (isNaN(Math.round(sum / amount))) {
+                console.log("[DEBUG] Found NaN for: " + sum + " / " + amount);
+            }
             result.push({
                 x: station.x,
                 y: station.y,
