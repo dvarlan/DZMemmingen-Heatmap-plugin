@@ -21,12 +21,12 @@ export default class heatmapProvider {
         this.heatmapData = [];
         this.heatmapLayer = null;
         this.backgroundBufferSize = 100;
-        this.backgroundDensity = 25;
+        this.backgroundDensity = 45;
         this.backgroundHeightOffset = 550;
         this.backgroundWidthOffset = 900;
         this.currentTimestampIndex = 0;
         this.heatmapConfig = {
-            radius: 60,
+            radius: 70,
             maxOpacity: 0.6,
             minOpacity: 0,
             blur: 0.85
@@ -113,7 +113,7 @@ export default class heatmapProvider {
                 let point = {
                     x: i,
                     y: j,
-                    value: Math.round(backgroundValue)
+                    value: parseFloat(backgroundValue).toFixed(1)
                 };
                 // Only perform the check for points inside of a buffered BoundingBox around the stations
                 if (util.isPointInBufferdBoundingBox(point)) {
@@ -137,7 +137,7 @@ export default class heatmapProvider {
                 let point = {
                     x: i,
                     y: j,
-                    value: Math.round(backgroundValue)
+                    value: parseFloat(backgroundValue).toFixed(1)
                 };
                 // Only perform the check for points inside of a buffered BoundingBox around the stations
                 if (util.isPointInBufferdBoundingBox(point)) {

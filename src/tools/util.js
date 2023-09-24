@@ -28,11 +28,11 @@ export default class util {
                     amount++;
                 }
             });
-            if (!isNaN(Math.round(sum / amount))) {
+            if (!isNaN((sum / amount).toFixed(1))) {
                 result.push({
                     x: station.x,
                     y: station.y,
-                    value: Math.round(sum / amount)
+                    value: (sum / amount).toFixed(1)
                 });
             }
         });
@@ -40,7 +40,7 @@ export default class util {
     }
 
     static iterpolateValues(stationValue, backgroundValue) {
-        return Math.round((stationValue + backgroundValue) / 2);
+        return ((parseFloat(stationValue) + parseFloat(backgroundValue)) / 2).toFixed(1);
     }
 
     static createBufferForPoint(point, bufferSize) {

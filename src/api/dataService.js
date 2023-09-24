@@ -113,13 +113,13 @@ export default class dataService {
         }
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
-                const currentValue = parseInt(entry.value);
+                const currentValue = parseFloat(entry.value);
                 if (currentValue < result) {
                     result = currentValue;
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMinValue', Math.round(result));
+        vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
         console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
@@ -133,13 +133,13 @@ export default class dataService {
         }
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
-                const currentValue = parseInt(entry.value);
+                const currentValue = parseFloat(entry.value);
                 if (currentValue > result) {
                     result = currentValue;
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMaxValue', Math.round(result));
+        vcs.ui.store.commit('heatmap/setMaxValue', result.toFixed(1));
         console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 
@@ -165,13 +165,13 @@ export default class dataService {
         });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
-                const currentValue = parseInt(entry.value);
+                const currentValue = parseFloat(entry.value);
                 if (currentValue < result) {
                     result = currentValue;
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMinValue', Math.round(result));
+        vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
         console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
@@ -183,13 +183,13 @@ export default class dataService {
         });
         if (this.backgroundDataForTimeframe.length > 0) {
             for (const entry of this.backgroundDataForTimeframe) {
-                const currentValue = parseInt(entry.value);
+                const currentValue = parseFloat(entry.value);
                 if (currentValue > result) {
                     result = currentValue;
                 }
             }
         }
-        vcs.ui.store.commit('heatmap/setMaxValue', Math.round(result));
+        vcs.ui.store.commit('heatmap/setMaxValue', result.toFixed(1));
         console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 }
