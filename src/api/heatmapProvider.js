@@ -4,7 +4,6 @@ import util from "../tools/util";
 
 const framework = vcs.vcm.Framework.getInstance();
 
-// TODO: Rename
 export default class heatmapProvider {
 
     constructor() {
@@ -21,7 +20,7 @@ export default class heatmapProvider {
         this.heatmapData = [];
         this.heatmapLayer = null;
         this.backgroundBufferSize = 100;
-        this.backgroundDensity = 45;
+        this.backgroundDensity = 47;
         this.backgroundHeightOffset = 550;
         this.backgroundWidthOffset = 900;
         this.currentTimestampIndex = 0;
