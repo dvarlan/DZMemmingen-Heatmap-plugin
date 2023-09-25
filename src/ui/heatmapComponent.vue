@@ -28,11 +28,18 @@
           <button @click="stopAnimation">Stop</button>
           <br>
           <br>
-          <h3>Legend for current Timeframe</h3>
-          <br>
-          <div class="color-gradiant">
-            <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
-            <p id="max-value">{{ this.$store.getters['heatmap/getMaxValue'] + "°C" }}</p>
+          <div class="heatmap-legend">
+            <h3>Legend for current Timeframe</h3>
+            <br>
+            <div class="color-gradiant">
+              <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
+              <p id="max-value">{{ this.$store.getters['heatmap/getMaxValue'] + "°C" }}</p>
+            </div>
+          </div>
+          <div class="heatmap-legend-tooltip">
+            <br>
+            <span>These are the min and max values used for the heatmap generation of the current timeframe. Due to
+              interpolation these values might not appear on the final visualisation.</span>
           </div>
         </div>
         <br>
@@ -175,6 +182,19 @@ h2 {
     margin-top: 2px;
     padding-right: 2px;
   }
+}
+
+.heatmap-legend-tooltip {
+  display: none;
+}
+
+.heatmap-legend:hover {
+  cursor: help;
+}
+
+.heatmap-legend:hover+.heatmap-legend-tooltip {
+  display: block;
+  color: blue;
 }
 
 .loading-screen {

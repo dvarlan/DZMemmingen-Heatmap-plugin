@@ -9,7 +9,7 @@
         <input @input="event => endDate = event.target.value" :value="endDate" name="end-date" min="2023-01-01"
             max="2023-07-31" type="date">
         <div class="background-picker">
-            <label for="background-value">Use background value: </label>
+            <label for="background-value" style="pointer-events: none;">Use background value: </label>
             <input @input="event => usingBackgroundValue = event.target.checked" :checked="usingBackgroundValue"
                 name="background-value" type="checkbox">
         </div>
@@ -80,7 +80,7 @@ export default {
                 let temp = null;
                 temp = this.startDate;
                 this.startDate = this.endDate;
-                this.endDate = temp; 
+                this.endDate = temp;
             }
 
             const service = new dataService();
@@ -109,6 +109,10 @@ export default {
 .background-picker {
     padding-top: 10px;
     margin-bottom: 10px;
+}
+
+.background-picker:hover {
+    cursor: help;
 }
 
 .background-picker:hover+.tooltip {
