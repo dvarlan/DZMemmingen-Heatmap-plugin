@@ -12,8 +12,8 @@ df.columns = ['Sensorname', 'Wert', 'Zeitstempel']
 df['Zeitstempel'] = df['Zeitstempel'].str.split(':').str[0] + ":00:00"
 df.drop_duplicates(subset=['Zeitstempel', 'Sensorname'], keep='first', inplace=True)
 
-# Temperaturwerte runden
-df.Wert = df.Wert.round().astype(int)
+# Temperaturwerte auf eine Nachkommastelle runden
+df.Wert = df.Wert.round(decimals=2).astype(float)
 
 # Koordinaten zu den jeweiligen Stationen hinzufügen
 
