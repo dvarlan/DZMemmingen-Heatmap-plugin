@@ -25,9 +25,6 @@ export default class dataService {
             // 24 Heatmaps (1 per hour)
             this.backgroundDataFilePath = DWD_HOURLY_FILE_PATH;
             return 'day';
-        } else if (numberOfDays % 365 === 0) {
-            // 12 Heatmaps (1 per month) | Not possible with current dataset
-            return 'year';
         } else {
             // 1 Heatmap per day
             this.backgroundDataFilePath = DWD_DAILY_FILE_PATH;

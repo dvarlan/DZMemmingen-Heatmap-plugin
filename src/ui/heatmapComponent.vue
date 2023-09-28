@@ -54,7 +54,6 @@ import pointProvider from '../api/pointProvider';
 import DatePickerComponent from './datePickerComponent.vue';
 import heatmapProvider from '../api/heatmapProvider';
 
-// Evtl. in mounted
 let myheatmapProvider = new heatmapProvider();
 let provider = new pointProvider();
 
