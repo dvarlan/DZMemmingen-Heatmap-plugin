@@ -39,7 +39,7 @@
           <div class="heatmap-legend-tooltip">
             <br>
             <span>These are the min and max values used for the heatmap generation of the current timeframe. Due to
-              interpolation these values might not appear on the final visualisation.</span>
+              interpolation these exact values might not appear on the final visualisation.</span>
           </div>
         </div>
         <br>
