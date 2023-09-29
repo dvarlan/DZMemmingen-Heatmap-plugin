@@ -19,13 +19,18 @@
         <div v-if="showingHeatmap" class="animation-controls">
           <br>
           <h3>Animation controls</h3>
+          <input v-model="currentHeatmapIndex" :disabled="animationId" type="range" min="0"
+            :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
+          <p>Selected Heatmap: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
+          <button @click="changeToSelectedCanvas" :disabled="animationId">Change to selected Heatmap</button>
           <p>Current Heatmap: {{ heatmapLabel }}</p>
+          <hr>
           <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
           <br>
           <label>Animation Speed: {{ animationSpeed }} sec.</label>
           <br>
-          <button @click="startAnimation">Start / Resume</button>
-          <button @click="stopAnimation">Stop</button>
+          <button class="animation-control-button" @click="startAnimation">Start / Resume</button>
+          <button class="animation-control-button" @click="stopAnimation">Stop</button>
           <br>
           <br>
           <div class="heatmap-legend">
@@ -65,6 +70,7 @@ export default {
       animationId: null,
       heatmapLabel: this.$store.getters['heatmap/getCurrentLabel'],
       isLoading: false,
+      currentHeatmapIndex: myheatmapProvider.currentTimestampIndex - 1,
     };
   },
   computed: {
@@ -108,14 +114,32 @@ export default {
         this.isLoading = false;
       }, 10)
     },
-    changeHeatmapCanvas() {
+    changeHeatmapCanvas(changedByUser) {
       console.log("[DEBUG] Changing heatmap canvas...");
+      const heatmapAmount = document.getElementById('heatmap-container-wrapper').children.length - 1;
       myheatmapProvider.changeToNextHeatmap();
+      if (parseInt(this.currentHeatmapIndex) === heatmapAmount && changedByUser) {
+        this.currentHeatmapIndex = heatmapAmount;
+      } else if (parseInt(this.currentHeatmapIndex) === heatmapAmount) {
+        this.currentHeatmapIndex = 0;
+      } else if (!changedByUser) {
+        this.currentHeatmapIndex++;
+      }
       this.heatmapLabel = this.$store.getters['heatmap/getCurrentLabel'];
+    },
+    getLabelForIndex(index) {
+      if (index < 0) {
+        return 'The animation is currently paused';
+      }
+      return document.getElementById('heatmap-container-wrapper').children[index].getAttribute('id');
+    },
+    changeToSelectedCanvas() {
+      myheatmapProvider.currentTimestampIndex = parseInt(this.currentHeatmapIndex);
+      this.changeHeatmapCanvas(true);
     },
     startAnimation() {
       this.stopAnimation();
-      this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000);
+      this.animationId = window.setInterval(this.changeHeatmapCanvas, this.animationSpeed * 1000, false);
     },
     stopAnimation() {
       if (this.animationId !== null) {
@@ -125,6 +149,7 @@ export default {
     },
     clear() {
       this.stopAnimation();
+      this.currentHeatmapIndex = 0;
       provider.clear();
       myheatmapProvider.clear();
       this.$store.commit('heatmap/reset');
@@ -155,7 +180,7 @@ h2 {
   padding: .5rem 0 0 0;
 }
 
-.animation-controls button {
+.animation-controls .animation-control-button {
   margin-left: 6px;
   margin-top: 15px;
 }
