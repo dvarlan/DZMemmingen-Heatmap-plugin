@@ -149,7 +149,7 @@ export default {
     },
     clear() {
       this.stopAnimation();
-      this.currentHeatmapIndex = 0;
+      this.currentHeatmapIndex = -1;
       provider.clear();
       myheatmapProvider.clear();
       this.$store.commit('heatmap/reset');
