@@ -112,7 +112,7 @@ export default {
         }
         this.$store.commit('heatmap/showHeatmap');
         this.isLoading = false;
-      }, 10)
+      }, 100)
     },
     changeHeatmapCanvas(changedByUser) {
       console.log("[DEBUG] Changing heatmap canvas...");
