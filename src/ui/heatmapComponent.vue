@@ -22,7 +22,7 @@
           <input v-model="currentHeatmapIndex" :disabled="animationId" type="range" min="0"
             :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
           <p>Selected Heatmap: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
-          <button @click="changeToSelectedCanvas" :disabled="animationId">Change to selected Heatmap</button>
+          <button @click="changeToSelectedCanvas" :disabled="animationId || currentHeatmapIndex < 0">Change to selected Heatmap</button>
           <p>Current Heatmap: {{ heatmapLabel }}</p>
           <hr>
           <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
