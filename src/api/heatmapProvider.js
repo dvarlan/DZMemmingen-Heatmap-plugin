@@ -1,69 +1,71 @@
-import dataProvider from "./dataProvider";
+import dateTools from "../tools/dateTools";
 import h337 from "heatmap.js-fix";
+import util from "../tools/util";
 
-const dataInstance = dataProvider.getInstance();
 const framework = vcs.vcm.Framework.getInstance();
-let map = null;
-let _instance = null;
 
-export default class heatmap {
+export default class heatmapProvider {
+
     constructor() {
-
-        map = framework.getActiveMap();
-
-        this.rawHeatmapBouningBox = {
+        this.canvasHeight = 1800;
+        this.canvasWidth = 2400;
+        this.rawHeatmapBoundingBox = {
             west: 10.165426272431576,
             south: 47.97753412328743,
             east: 10.200222844460304,
             north: 47.990433576113986,
         };
-
-        this.heatmapBoundingBox = Cesium.Rectangle.fromDegrees(
-            this.rawHeatmapBouningBox.west,
-            this.rawHeatmapBouningBox.south,
-            this.rawHeatmapBouningBox.east,
-            this.rawHeatmapBouningBox.north
-        );
-
+        this.mode = '';
+        this.data = [];
+        this.heatmapData = [];
         this.heatmapLayer = null;
+        this.backgroundBufferSize = 100;
+        this.backgroundDensity = 47;
+        this.backgroundHeightOffset = 550;
+        this.backgroundWidthOffset = 900;
+        this.currentTimestampIndex = 0;
         this.heatmapConfig = {
-            radius: 40,
+            radius: 70,
             maxOpacity: 0.6,
             minOpacity: 0,
             blur: 0.85
         };
-
-        this.currentTime = 0;
-
-        this.canvasHeight = 1800;
-        this.canvasWidth = 2400;
-    }
-
-    static getInstance() {
-        if (_instance) {
-            return _instance;
-        }
-        _instance = new heatmap();
-        return _instance;
     }
 
     createHeatmapContainers() {
-        const heatmapContainerWrapper = document.createElement("div");
-        heatmapContainerWrapper.setAttribute("id", "heatmap_container_wrapper");
-        document.body.appendChild(heatmapContainerWrapper);
+        let heatmapContainerWrapper = document.getElementById('heatmap-container-wrapper');
+        this.data = vcs.ui.store.getters['heatmap/getSensorData'];
+        this.mode = vcs.ui.store.getters['heatmap/getMode'];
 
-        for (let time = 0; time < 24; time++) {
-            const heatmapContainer = document.createElement("div");
-            heatmapContainer.setAttribute("id", `heatmapContainer_${time}`);
-            heatmapContainer.setAttribute("style", `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
-            heatmapContainerWrapper.appendChild(heatmapContainer);
+        if (!heatmapContainerWrapper) {
+            heatmapContainerWrapper = document.createElement('div');
+            heatmapContainerWrapper.setAttribute('id', 'heatmap-container-wrapper');
+            document.body.appendChild(heatmapContainerWrapper);
+        }
+
+        if (this.mode === 'day') {
+            // Name: Timestamp + Uhrzeit -> '2023-01-01 00:00:00'
+            for (let hour = 0; hour < 24; hour++) {
+                const heatmapContainer = document.createElement("div");
+                heatmapContainer.setAttribute('id', dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour));
+                heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
+                heatmapContainerWrapper.appendChild(heatmapContainer);
+            }
+        } else if (this.mode === 'default') {
+            // Name: Timestamp -> '2023-01-01'
+            for (const day of this.data) {
+                const heatmapContainer = document.createElement("div");
+                heatmapContainer.setAttribute('id', day.timestamp);
+                heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
+                heatmapContainerWrapper.appendChild(heatmapContainer);
+            }
         }
     }
 
-    createHeatmapCanvasForContainers() {
-        for (let time = 0; time < 24; time++) {
+    createHeatmapsForDays() {
+        for (let hour = 0; hour < 24; hour++) {
             let heatmapCanvas = h337.create({
-                container: document.getElementById(`heatmapContainer_${time}`),
+                container: document.getElementById(dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour)),
                 radius: this.heatmapConfig.radius,
                 maxOpacity: this.heatmapConfig.maxOpacity,
                 minOpacity: this.heatmapConfig.minOpacity,
@@ -71,53 +73,151 @@ export default class heatmap {
             });
 
             heatmapCanvas.setData({
-                min: dataInstance.getMinTempValue(),
-                max: dataInstance.getMaxTempValue(),
-                data: dataInstance.heatmapData[time].data
+                min: vcs.ui.store.getters['heatmap/getMinValue'],
+                max: vcs.ui.store.getters['heatmap/getMaxValue'],
+                data: this.convertDataForHeatmapDay(hour)
             });
         }
     }
 
-    changeToNextHeatmapCanvas() {
-        console.log("Current time: " + this.currentTime);
+    createHeatmapsForDefault() {
+        for (let day = 0; day < this.data.length; day++) {
+            let heatmapCanvas = h337.create({
+                container: document.getElementById('heatmap-container-wrapper').children[day],
+                radius: this.heatmapConfig.radius,
+                maxOpacity: this.heatmapConfig.maxOpacity,
+                minOpacity: this.heatmapConfig.minOpacity,
+                blur: this.heatmapConfig.blur
+            });
 
-        if (this.currentTime === 24) {
-            this.currentTime = 0;
+            heatmapCanvas.setData({
+                min: vcs.ui.store.getters['heatmap/getMinValue'],
+                max: vcs.ui.store.getters['heatmap/getMaxValue'],
+                data: this.convertDataForHeatmapDefault(day)
+            });
         }
+    }
 
+    addHeatmapBackgroundValueDay(currentHour) {
+        let backgroundValue = null;
+        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
+        vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
+            if (dateTools.getTimeForTimestamp(entry.timestamp, 'T') === dateTools.createHourLableFromNumber(currentHour)) {
+                backgroundValue = entry.value;
+            }
+        });
+
+        for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
+            for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
+                let point = {
+                    x: i,
+                    y: j,
+                    value: parseFloat(backgroundValue).toFixed(1)
+                };
+                // Only perform the check for points inside of a buffered BoundingBox around the stations
+                if (util.isPointInBufferdBoundingBox(point)) {
+                    for (const buffer of stationBuffers) {
+                        if (util.isPointInBuffer(point, buffer)) {
+                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        }
+                    }
+                }
+                this.heatmapData.push(point);
+            }
+        }
+    }
+
+    addHeatmapBackgroundValueDefault(currentDayIndex) {
+        const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
+        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
+
+        for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
+            for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
+                let point = {
+                    x: i,
+                    y: j,
+                    value: parseFloat(backgroundValue).toFixed(1)
+                };
+                // Only perform the check for points inside of a buffered BoundingBox around the stations
+                if (util.isPointInBufferdBoundingBox(point)) {
+                    for (const buffer of stationBuffers) {
+                        if (util.isPointInBuffer(point, buffer)) {
+                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        }
+                    }
+                }
+                this.heatmapData.push(point);
+            }
+        }
+    }
+
+    convertDataForHeatmapDay(currentHour) {
+        this.heatmapData = [];
+        this.data[0].data.forEach(entry => {
+            if (entry.Uhrzeit === dateTools.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
+                entry.data.forEach(station => {
+                    const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
+                    this.heatmapData.push({
+                        x: convertedCoordinates.x,
+                        y: convertedCoordinates.y,
+                        value: station.Wert
+                    });
+                });
+            }
+        });
+        if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
+            this.addHeatmapBackgroundValueDay(currentHour);
+        }
+        return this.heatmapData;
+    }
+
+    convertDataForHeatmapDefault(currentDayIndex) {
+        this.heatmapData = [];
+        let currentEntryData = [];
+        this.data[currentDayIndex].data.forEach(entry => {
+            if (entry.data.length > 0) {
+                entry.data.forEach(item => currentEntryData.push(item));
+            }
+        });
+        this.heatmapData.push(...util.calculateMeanValueForStations(currentEntryData));
+        if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
+            this.addHeatmapBackgroundValueDefault(currentDayIndex);
+        }
+        return this.heatmapData;
+    }
+
+    changeToNextHeatmap() {
+        const map = framework.getActiveMap();
         map.getScene().imageryLayers.remove(this.heatmapLayer);
-
-        let currentContainer = document.getElementById(`heatmapContainer_${this.currentTime}`);
-        let currentCanvas = currentContainer.querySelector('canvas[class="heatmap-canvas"]');
+        const currentLabel = document.getElementById('heatmap-container-wrapper').children[this.currentTimestampIndex].getAttribute('id');
+        vcs.ui.store.commit('heatmap/setCurrentLabel', currentLabel);
+        const currentCanvas = document.getElementById('heatmap-container-wrapper').children[this.currentTimestampIndex].children[0];
 
         this.heatmapLayer = new Cesium.ImageryLayer(
             new Cesium.SingleTileImageryProvider({
                 url: currentCanvas.toDataURL(),
-                rectangle: this.heatmapBoundingBox
+                rectangle: Cesium.Rectangle.fromDegrees(
+                    this.rawHeatmapBoundingBox.west,
+                    this.rawHeatmapBoundingBox.south,
+                    this.rawHeatmapBoundingBox.east,
+                    this.rawHeatmapBoundingBox.north
+                )
             })
         );
-
         map.getScene().imageryLayers.add(this.heatmapLayer);
-        this.currentTime++;
-    }
-
-    drawStationPoints3D() {
-        const dataSource = dataInstance.getPointsAsCesiumDataSource();
-        map.getDatasources().add(dataSource);
-        console.log("[DEBUG] 3D stations added!");
-    }
-
-    clearLayers() {
-        console.log("[DEBUG] Clearing layers...")
-        let stationPoints = map.getDatasources().getByName("3D Station Points")[0];
-        let heatmapContainer = document.getElementById("heatmap_container_wrapper");
-        if (stationPoints !== []) {
-            map.getDatasources().remove(stationPoints);
+        if (this.currentTimestampIndex === document.getElementById('heatmap-container-wrapper').children.length - 1) {
+            this.currentTimestampIndex = 0;
+        } else {
+            this.currentTimestampIndex++;
         }
+    }
+
+    clear() {
+        let heatmapContainer = document.getElementById("heatmap-container-wrapper");
         if (heatmapContainer) {
             heatmapContainer.remove();
         }
-        map.getScene().imageryLayers.remove(this.heatmapLayer);
-        this.currentTime = 0;
+        framework.getActiveMap().getScene().imageryLayers.remove(this.heatmapLayer);
+        this.currentTimestampIndex = 0;
     }
 }
