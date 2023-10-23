@@ -94,7 +94,6 @@ export default {
   },
   methods: {
     drawStations() {
-      console.log("[DEBUG] Drawing stations...");
       provider.fetchStationPoints().then(() => {
         provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
       });
@@ -102,7 +101,6 @@ export default {
     },
     drawHeatmap() {
       this.isLoading = true;
-      console.log("[DEBUG] Drawing heatmap... ");
       window.setTimeout(() => {
         myheatmapProvider.createHeatmapContainers();
         if (this.$store.getters['heatmap/getMode'] === 'day') {
@@ -115,7 +113,6 @@ export default {
       }, 100)
     },
     changeHeatmapCanvas(changedByUser) {
-      console.log("[DEBUG] Changing heatmap canvas...");
       const heatmapAmount = document.getElementById('heatmap-container-wrapper').children.length - 1;
       myheatmapProvider.changeToNextHeatmap();
       if (parseInt(this.currentHeatmapIndex) === heatmapAmount && changedByUser) {

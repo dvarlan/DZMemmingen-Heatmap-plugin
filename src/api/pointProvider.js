@@ -39,7 +39,6 @@ export default class pointProvider {
 
     drawStationPoints(dataSource) {
         framework.getActiveMap().getDatasources().add(dataSource);
-        console.log("[DEBUG] Station points added");
     }
 
     clear() {

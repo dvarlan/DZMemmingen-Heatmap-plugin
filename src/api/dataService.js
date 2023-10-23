@@ -42,8 +42,6 @@ export default class dataService {
                     value: entry.Wert
                 });
             });
-            console.log("[DEBUG] Raw background data: ")
-            console.log(this.backgroundData);
         }
 
         const sensorResponse = await fetch(SENSOR_DATA_FILE_PATH);
@@ -54,8 +52,6 @@ export default class dataService {
                 data: entry.data
             });
         });
-        console.log("[DEBUG] Raw station data: ");
-        console.log(this.sensorData);
     }
 
     getSensorDataForTimeframe() {
@@ -65,7 +61,6 @@ export default class dataService {
                     this.sensorDataForTimeframe.push(entry);
                 }
             });
-            console.log("[DEBUG] Station data for timeframe (day): ");
         } else if (this.mode === 'default') {
             this.sensorData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
@@ -73,10 +68,8 @@ export default class dataService {
                     this.sensorDataForTimeframe.push(entry);
                 }
             });
-            console.log("[DEBUG] Station data for timeframe (default): ");
         }
         vcs.ui.store.commit('heatmap/setSensorData', Object.freeze(this.sensorDataForTimeframe));
-        console.log(vcs.ui.store.getters['heatmap/getSensorData']);
     }
 
     getBackgroundDataForTimeframe() {
@@ -86,7 +79,6 @@ export default class dataService {
                     this.backgroundDataForTimeframe.push(entry);
                 }
             });
-            console.log("[DEBUG] Background data for timeframe (day): ")
         } else if (this.mode === 'default') {
             this.backgroundData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
@@ -94,10 +86,8 @@ export default class dataService {
                     this.backgroundDataForTimeframe.push(entry);
                 }
             });
-            console.log("[DEBUG] Background data for timeframe (default): ")
         }
         vcs.ui.store.commit('heatmap/setBackgroundData', Object.freeze(this.backgroundDataForTimeframe));
-        console.log(vcs.ui.store.getters['heatmap/getBackgroundData']);
     }
 
     getMinValueForTimeframeDay() {
@@ -117,7 +107,6 @@ export default class dataService {
             }
         }
         vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
-        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
     getMaxValueForTimeframeDay() {
@@ -137,7 +126,6 @@ export default class dataService {
             }
         }
         vcs.ui.store.commit('heatmap/setMaxValue', result.toFixed(1));
-        console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 
     getMeanValuesForTimeframeDefault() {
@@ -169,7 +157,6 @@ export default class dataService {
             }
         }
         vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
-        console.log("[DEBUG] Min value: " + vcs.ui.store.getters['heatmap/getMinValue']);
     }
 
     getMaxValueForTimeframeDefault() {
@@ -187,6 +174,5 @@ export default class dataService {
             }
         }
         vcs.ui.store.commit('heatmap/setMaxValue', result.toFixed(1));
-        console.log("[DEBUG] Max value: " + vcs.ui.store.getters['heatmap/getMaxValue']);
     }
 }
