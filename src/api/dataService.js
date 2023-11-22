@@ -12,24 +12,11 @@ export default class dataService {
         this.sensorDataForTimeframe = [];
         this.backgroundData = [];
         this.backgroundDataForTimeframe = [];
-        this.mode = this.getMode();
-        this.backgroundDataFilePath = "";
 
-        this.getMode();
-        vcs.ui.store.commit('heatmap/setMode', this.mode);
-    }
-
-    getMode() {
         const numberOfDays = dateTools.getInclusiveDaysBetweenDates(vcs.ui.store.getters['heatmap/getStartDate'], vcs.ui.store.getters['heatmap/getEndDate']);
-        if (numberOfDays === 1) {
-            // 24 Heatmaps (1 per hour)
-            this.backgroundDataFilePath = DWD_HOURLY_FILE_PATH;
-            return 'day';
-        } else {
-            // 1 Heatmap per day
-            this.backgroundDataFilePath = DWD_DAILY_FILE_PATH;
-            return 'default';
-        }
+        this.backgroundDataFilePath = numberOfDays === 1 ? DWD_HOURLY_FILE_PATH : DWD_DAILY_FILE_PATH;
+        this.mode = numberOfDays === 1 ? 'day' : 'default';
+        vcs.ui.store.commit('heatmap/setMode', this.mode);
     }
 
     async parseData() {

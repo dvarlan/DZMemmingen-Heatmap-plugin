@@ -1,7 +1,7 @@
 <template>
     <div v-if="!selectionSubmitted" class="date-picker">
         <hr>
-        <p>Please select the timeframe for the Heatmap visualisation below</p>
+        <p>Please select the timeframe for the heatmap visualisation below</p>
         <label for="start-date">Start: </label>
         <input @input="event => startDate = event.target.value" :value="startDate" style="margin-right: 5px;"
             name="start-date" min="2023-01-01" max="2023-07-31" type="date">
@@ -23,8 +23,8 @@
         <button @click.once="submitSelection">Submit</button>
     </div>
     <div v-else class="date-picker-infos">
-        <p v-if="startDate === endDate">Current Timeframe: <span class="highlighted-text">{{ startDate }} (24hrs)</span></p>
-        <p v-else>Current Timeframe: <span class="highlighted-text">{{ startDate }} | {{ endDate }}</span></p>
+        <p v-if="startDate === endDate">Current timeframe: <span class="highlighted-text">{{ startDate }} (24hrs)</span></p>
+        <p v-else>Current timeframe: <span class="highlighted-text">{{ startDate }} | {{ endDate }}</span></p>
         <p>Background value: <span class="highlighted-text">{{ usingBackgroundValue }}</span></p>
     </div>
 </template>
@@ -99,6 +99,7 @@ export default {
                     service.getMaxValueForTimeframeDefault();
                 }
                 this.selectionSubmitted = true;
+                this.$emit('selectionChanged');
             });
         }
     }

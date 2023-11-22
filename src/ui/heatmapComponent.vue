@@ -5,36 +5,35 @@
       <h2>Heatmap Plugin</h2>
     </div>
     <div class="scroll-wrap">
-      <DatePickerComponent></DatePickerComponent>
+      <DatePickerComponent @selectionChanged="drawHeatmap"></DatePickerComponent>
       <hr>
       <div v-if="isLoading" class="loading-screen">
-        <h1>Generating Heatmaps please wait...</h1>
+        <h1>Generating heatmaps please wait...</h1>
       </div>
       <div v-if="selectionSubmitted && !isLoading" class="buttons">
-        <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Add Stationpoints</button>
+        <h3>Options</h3>
+        <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Show sensor
+          positions</button> <!-- TODO: Change to checkbox & hide / show layer instead of clearing -->
         <br>
+        <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
         <br>
-        <button class="vcm-btn-project-list" @click="drawHeatmap" :disabled="showingHeatmap">Draw Heatmap</button>
+        <label>Animation speed: {{ animationSpeed }} sec.</label>
         <br>
+        <button class="vcm-btn-project-list" @click="clear">Clear heatmap</button>
         <div v-if="showingHeatmap" class="animation-controls">
           <br>
-          <h3>Animation controls</h3>
-          <input v-model="currentHeatmapIndex" :disabled="animationId" type="range" min="0"
-            :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
-          <p>Selected Heatmap: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
-          <button @click="changeToSelectedCanvas" :disabled="animationId || currentHeatmapIndex < 0">Change to selected Heatmap</button>
-          <p>Current Heatmap: {{ heatmapLabel }}</p>
           <hr>
-          <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
-          <br>
-          <label>Animation Speed: {{ animationSpeed }} sec.</label>
-          <br>
-          <button class="animation-control-button" @click="startAnimation">Start / Resume</button>
-          <button class="animation-control-button" @click="stopAnimation">Stop</button>
+          <h3>Animation controls</h3>
+          <input v-model="currentHeatmapIndex" @change="changeToSelectedCanvas" :disabled="animationId" type="range"
+            min="0"
+            :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
+          <p>Date / time: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
+          <button v-if="!animationId" class="animation-control-button" @click="startAnimation">{{currentHeatmapIndex > 0 ? "Resume" : "Start"}}</button>
+          <button v-if="animationId" class="animation-control-button" @click="stopAnimation">Stop</button>
           <br>
           <br>
           <div class="heatmap-legend">
-            <h3>Legend for current Timeframe</h3>
+            <h3>Legend for current timeframe</h3>
             <br>
             <div class="color-gradiant">
               <p id="min-value">{{ this.$store.getters['heatmap/getMinValue'] + "°C" }}</p>
@@ -47,8 +46,6 @@
               interpolation these exact values might not appear on the final visualisation.</span>
           </div>
         </div>
-        <br>
-        <button class="vcm-btn-project-list" @click="clear">Clear</button>
         <hr>
       </div>
     </div>
@@ -178,6 +175,7 @@ h2 {
 }
 
 .animation-controls .animation-control-button {
+  width: 100px;
   margin-left: 6px;
   margin-top: 15px;
 }
