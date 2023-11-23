@@ -58,7 +58,7 @@ export default class pointProvider {
         const map = framework.getActiveMap();
         const stationPoints = map.getDatasources().getByName('Station Points')[0];
         if (stationPoints) {
-            map.getDatasources().remove(stationPoints);
+            map.getDatasources().remove(stationPoints, true);
         }
     }
 }
