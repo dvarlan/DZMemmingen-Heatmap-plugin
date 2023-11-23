@@ -1,5 +1,5 @@
 import dateUtils from "../tools/dateUtils";
-import util from "../tools/util";
+import heatmapCalcUtils from "../tools/heatmapCalcUtils";
 
 const SENSOR_DATA_FILE_PATH = "./src/data/SensorData.json";
 const DWD_DAILY_FILE_PATH = "./src/data/DWD_daily_mean.json";
@@ -124,7 +124,7 @@ export default class dataService {
                     currentData.push(hour.data);
                 }
             });
-            result.push(...util.calculateMeanValueForStations(...currentData));
+            result.push(...heatmapCalcUtils.calculateMeanValueForStations(...currentData));
         }
         return result;
     }

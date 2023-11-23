@@ -21,6 +21,10 @@ export default class pointProvider {
         });
     }
 
+    getStationPointsForDataset() {
+        // Use StationMappings from Util class to push onto stationPoints
+    }
+
     getPointsAsCesiumDataSource() {
         const dataSource = new Cesium.CustomDataSource('Station Points');
 

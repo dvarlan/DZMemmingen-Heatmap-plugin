@@ -1,6 +1,7 @@
 import dateUtils from "../tools/dateUtils";
 import h337 from "heatmap.js-fix";
-import util from "../tools/util";
+import mapUtils from "../tools/mapUtils";
+import heatmapCalcUtils from "../tools/heatmapCalcUtils";
 
 const framework = vcs.vcm.Framework.getInstance();
 
@@ -100,7 +101,7 @@ export default class heatmapProvider {
 
     addHeatmapBackgroundValueDay(currentHour) {
         let backgroundValue = null;
-        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
+        let stationBuffers = this.heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
         vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
             if (dateUtils.getTimeForTimestamp(entry.timestamp, 'T') === dateUtils.createHourLableFromNumber(currentHour)) {
                 backgroundValue = entry.value;
@@ -115,10 +116,10 @@ export default class heatmapProvider {
                     value: parseFloat(backgroundValue).toFixed(1)
                 };
                 // Only perform the check for points inside of a buffered BoundingBox around the stations
-                if (util.isPointInBufferdBoundingBox(point)) {
+                if (mapUtils.isPointInBufferdBoundingBox(point)) {
                     for (const buffer of stationBuffers) {
-                        if (util.isPointInBuffer(point, buffer)) {
-                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        if (mapUtils.isPointInBuffer(point, buffer)) {
+                            point.value = mapUtils.iterpolateValues(point.value, buffer.value);
                         }
                     }
                 }
@@ -129,7 +130,7 @@ export default class heatmapProvider {
 
     addHeatmapBackgroundValueDefault(currentDayIndex) {
         const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
-        let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
+        let stationBuffers = this.heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
 
         for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
             for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
@@ -139,10 +140,10 @@ export default class heatmapProvider {
                     value: parseFloat(backgroundValue).toFixed(1)
                 };
                 // Only perform the check for points inside of a buffered BoundingBox around the stations
-                if (util.isPointInBufferdBoundingBox(point)) {
+                if (mapUtils.isPointInBufferdBoundingBox(point)) {
                     for (const buffer of stationBuffers) {
-                        if (util.isPointInBuffer(point, buffer)) {
-                            point.value = util.iterpolateValues(point.value, buffer.value);
+                        if (mapUtils.isPointInBuffer(point, buffer)) {
+                            point.value = mapUtils.iterpolateValues(point.value, buffer.value);
                         }
                     }
                 }
@@ -156,7 +157,7 @@ export default class heatmapProvider {
         this.data[0].data.forEach(entry => {
             if (entry.Uhrzeit === dateUtils.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
                 entry.data.forEach(station => {
-                    const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
+                    const convertedCoordinates = mapUtils.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
                     this.heatmapData.push({
                         x: convertedCoordinates.x,
                         y: convertedCoordinates.y,
@@ -179,7 +180,7 @@ export default class heatmapProvider {
                 entry.data.forEach(item => currentEntryData.push(item));
             }
         });
-        this.heatmapData.push(...util.calculateMeanValueForStations(currentEntryData));
+        this.heatmapData.push(...heatmapCalcUtils.calculateMeanValueForStations(currentEntryData));
         if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
             this.addHeatmapBackgroundValueDefault(currentDayIndex);
         }
