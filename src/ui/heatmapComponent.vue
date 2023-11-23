@@ -91,9 +91,15 @@ export default {
   },
   methods: {
     drawStations() {
-      provider.fetchStationPoints().then(() => {
-        provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
-      });
+
+      // Commented out bc the dataset is only for 6 sensors & this function fetches all sensor points
+
+      //provider.fetchStationPoints().then(() => {
+      //  provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
+      //});
+
+      provider.getStationPointsForDataset();
+      provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
       this.$store.commit('heatmap/showStations');
     },
     drawHeatmap() {

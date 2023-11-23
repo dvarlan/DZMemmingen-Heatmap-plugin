@@ -1,4 +1,6 @@
 // TODO: Change to 6 correct Sensor positions
+import heatmapCalcUtils from "../tools/heatmapCalcUtils";
+
 const requestUrl = 'https://dz.memmingen.de/datasource-data/sensorthings/Locations/?$filter=description%20eq%27Temperatur_Luftfeuchte%27%20and%20properties/tenantUID%20eq%20%2797609513-84AF-46BD-B6A6-76C071F1FBFB%27%20and%20properties/deletedFlag%20eq%20%27False%27&$resultFormat=GeoJSON';
 const framework = vcs.vcm.Framework.getInstance();
 
@@ -21,8 +23,14 @@ export default class pointProvider {
         });
     }
 
+    // This only gets the positions for the 6 Stations from the dataset
     getStationPointsForDataset() {
-        // Use StationMappings from Util class to push onto stationPoints
+        heatmapCalcUtils.stationMappings.forEach(station => {
+            this.stationPositions.push({
+                lat: station.lat,
+                lon: station.lon
+            });
+        });
     }
 
     getPointsAsCesiumDataSource() {
