@@ -31,7 +31,7 @@
 
 <script>
 import dataService from "../api/dataService";
-import dateTools from "../tools/dateTools";
+import dateUtils from "../tools/dateUtils";
 
 export default {
     data() {
@@ -76,7 +76,7 @@ export default {
     methods: {
         submitSelection() {
 
-            if (dateTools.getInclusiveDaysBetweenDates(this.startDate, this.endDate) <= 0) {
+            if (dateUtils.getInclusiveDaysBetweenDates(this.startDate, this.endDate) <= 0) {
                 let temp = null;
                 temp = this.startDate;
                 this.startDate = this.endDate;

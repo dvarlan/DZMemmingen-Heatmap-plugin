@@ -1,4 +1,4 @@
-import dateTools from "../tools/dateTools";
+import dateUtils from "../tools/dateUtils";
 import h337 from "heatmap.js-fix";
 import util from "../tools/util";
 
@@ -47,7 +47,7 @@ export default class heatmapProvider {
             // Name: Timestamp + Uhrzeit -> '2023-01-01 00:00:00'
             for (let hour = 0; hour < 24; hour++) {
                 const heatmapContainer = document.createElement("div");
-                heatmapContainer.setAttribute('id', dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour));
+                heatmapContainer.setAttribute('id', dateUtils.createLableFromDateAndHour(this.data[0].timestamp, hour));
                 heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
                 heatmapContainerWrapper.appendChild(heatmapContainer);
             }
@@ -65,7 +65,7 @@ export default class heatmapProvider {
     createHeatmapsForDays() {
         for (let hour = 0; hour < 24; hour++) {
             let heatmapCanvas = h337.create({
-                container: document.getElementById(dateTools.createLableFromDateAndHour(this.data[0].timestamp, hour)),
+                container: document.getElementById(dateUtils.createLableFromDateAndHour(this.data[0].timestamp, hour)),
                 radius: this.heatmapConfig.radius,
                 maxOpacity: this.heatmapConfig.maxOpacity,
                 minOpacity: this.heatmapConfig.minOpacity,
@@ -102,7 +102,7 @@ export default class heatmapProvider {
         let backgroundValue = null;
         let stationBuffers = this.heatmapData.map(station => util.createBufferForPoint(station, this.backgroundBufferSize));
         vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
-            if (dateTools.getTimeForTimestamp(entry.timestamp, 'T') === dateTools.createHourLableFromNumber(currentHour)) {
+            if (dateUtils.getTimeForTimestamp(entry.timestamp, 'T') === dateUtils.createHourLableFromNumber(currentHour)) {
                 backgroundValue = entry.value;
             }
         });
@@ -154,7 +154,7 @@ export default class heatmapProvider {
     convertDataForHeatmapDay(currentHour) {
         this.heatmapData = [];
         this.data[0].data.forEach(entry => {
-            if (entry.Uhrzeit === dateTools.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
+            if (entry.Uhrzeit === dateUtils.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
                 entry.data.forEach(station => {
                     const convertedCoordinates = util.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
                     this.heatmapData.push({

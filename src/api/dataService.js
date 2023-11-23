@@ -1,4 +1,4 @@
-import dateTools from "../tools/dateTools";
+import dateUtils from "../tools/dateUtils";
 import util from "../tools/util";
 
 const SENSOR_DATA_FILE_PATH = "./src/data/SensorData.json";
@@ -13,7 +13,7 @@ export default class dataService {
         this.backgroundData = [];
         this.backgroundDataForTimeframe = [];
 
-        const numberOfDays = dateTools.getInclusiveDaysBetweenDates(vcs.ui.store.getters['heatmap/getStartDate'], vcs.ui.store.getters['heatmap/getEndDate']);
+        const numberOfDays = dateUtils.getInclusiveDaysBetweenDates(vcs.ui.store.getters['heatmap/getStartDate'], vcs.ui.store.getters['heatmap/getEndDate']);
         this.backgroundDataFilePath = numberOfDays === 1 ? DWD_HOURLY_FILE_PATH : DWD_DAILY_FILE_PATH;
         this.mode = numberOfDays === 1 ? 'day' : 'default';
         vcs.ui.store.commit('heatmap/setMode', this.mode);
