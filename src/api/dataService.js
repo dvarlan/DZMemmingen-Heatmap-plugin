@@ -1,9 +1,9 @@
 import dateUtils from "../tools/dateUtils";
 import heatmapCalcUtils from "../tools/heatmapCalcUtils";
 
-const SENSOR_DATA_FILE_PATH = "./src/data/SensorData.json";
-const DWD_DAILY_FILE_PATH = "./src/data/DWD_daily_mean.json";
-const DWD_HOURLY_FILE_PATH = "./src/data/DWD_hourly.json";
+const SENSOR_DATA_FILE_PATH = "./assets/SensorData.json";
+const DWD_DAILY_FILE_PATH = "./assets/DWD_daily_mean.json";
+const DWD_HOURLY_FILE_PATH = "./assets/DWD_hourly.json";
 
 export default class dataService {
 
