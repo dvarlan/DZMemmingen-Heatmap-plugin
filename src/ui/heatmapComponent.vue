@@ -10,18 +10,20 @@
       <div v-if="isLoading" class="loading-screen">
         <h1>Generating heatmaps please wait...</h1>
       </div>
-      <div v-if="selectionSubmitted && !isLoading" class="buttons">
-        <h3>Options</h3>
-        <br>
-        <label for="stations cbox">Show stations: </label>
-        <input v-model="showingStations" type="checkbox" name="stations-cbox" @change="toggleStations">
-        <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
-        <br>
-        <label>Animation speed: {{ animationSpeed }} sec.</label>
-        <br>
-        <button class="vcm-btn-project-list" @click="clear">Clear heatmap</button>
-        <div v-if="showingHeatmap" class="animation-controls">
+      <div v-if="selectionSubmitted && !isLoading">
+        <div class="options">
+          <h3>Options</h3>
+          <div class="station-controls">
+            <label for="stations cbox">Show stations: </label>
+            <input v-model="showingStations" type="checkbox" name="stations-cbox" @change="toggleStations">
+          </div>
+          <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
           <br>
+          <label>Animation speed: {{ animationSpeed }} sec.</label>
+          <br>
+          <button class="vcm-btn-project-list" @click="clear">Clear heatmap</button>
+        </div>
+        <div v-if="showingHeatmap" class="animation-controls">
           <hr>
           <h3>Animation controls</h3>
           <input v-model="currentHeatmapIndex" @change="changeToSelectedCanvas" :disabled="animationId" type="range"
@@ -185,14 +187,19 @@ h2 {
   overflow: auto;
 }
 
-.buttons {
-  padding: .5rem 0 0 0;
-}
-
 .animation-controls .animation-control-button {
   width: 100px;
-  margin-left: 6px;
-  margin-top: 15px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.station-controls {
+  display: flex;
+  align-items: center;
 }
 
 .color-gradiant {

@@ -108,6 +108,9 @@ export default {
 
 <style>
 .background-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 10px;
     margin-bottom: 10px;
 }
