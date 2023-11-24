@@ -7,6 +7,7 @@ export default class pointProvider {
 
     constructor() {
         this.stationPositions = [];
+        this.cesiumDataSource = null;
     }
 
     async fetchStationPoints() {
@@ -23,7 +24,7 @@ export default class pointProvider {
     }
 
     // This only gets the positions for the 6 Stations from the dataset
-    getStationPointsForDataset() {
+    fetchStationPointsForDataset() {
         heatmapCalcUtils.stationMappings.forEach(station => {
             this.stationPositions.push({
                 lat: station.lat,
@@ -32,8 +33,8 @@ export default class pointProvider {
         });
     }
 
-    getPointsAsCesiumDataSource() {
-        const dataSource = new Cesium.CustomDataSource('Station Points');
+    convertPointsToCesiumDataSource() {
+        this.cesiumDataSource = new Cesium.CustomDataSource('Station Points');
 
         this.stationPositions.forEach(point => {
             let entity = new Cesium.Entity({
@@ -44,20 +45,19 @@ export default class pointProvider {
                     outlineColor: Cesium.Color.BLACK
                 }
             });
-            dataSource.entities.add(entity);
+            this.cesiumDataSource.entities.add(entity);
         });
-        return dataSource;
     }
 
-    drawStationPoints(dataSource) {
-        framework.getActiveMap().getDatasources().add(dataSource);
+    drawStationPoints() {
+        framework.getActiveMap().getDatasources().add(this.cesiumDataSource);
+    }
+
+    hideStationPoints() {
+        framework.getActiveMap().getDatasources().remove(this.cesiumDataSource);
     }
 
     clear() {
-        const map = framework.getActiveMap();
-        const stationPoints = map.getDatasources().getByName('Station Points')[0];
-        if (stationPoints) {
-            map.getDatasources().remove(stationPoints, true);
-        }
+        framework.getActiveMap().getDatasources().remove(this.cesiumDataSource, true);
     }
 }

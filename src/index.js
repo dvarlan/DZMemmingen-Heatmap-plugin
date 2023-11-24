@@ -35,8 +35,8 @@ export default {
         showHeatmap(state) {
           state.showingHeatmap = true;
         },
-        showStations(state) {
-          state.showingStations = true;
+        showStations(state, value) {
+          state.showingStations = value;
         },
         changeAnimationSpeed(state, value) {
           state.animationSpeed = value;

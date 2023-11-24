@@ -5,16 +5,16 @@
       <h2>Heatmap Plugin</h2>
     </div>
     <div class="scroll-wrap">
-      <DatePickerComponent @selectionChanged="drawHeatmap"></DatePickerComponent>
+      <DatePickerComponent @selectionChanged="initialize"></DatePickerComponent>
       <hr>
       <div v-if="isLoading" class="loading-screen">
         <h1>Generating heatmaps please wait...</h1>
       </div>
       <div v-if="selectionSubmitted && !isLoading" class="buttons">
         <h3>Options</h3>
-        <button class="vcm-btn-project-list" @click="drawStations" :disabled="showingStations">Show sensor
-          positions</button> <!-- TODO: Change to checkbox & hide / show layer instead of clearing -->
         <br>
+        <label for="stations cbox">Show stations: </label>
+        <input v-model="showingStations" type="checkbox" name="stations-cbox" @change="toggleStations">
         <input v-model="animationSpeed" :disabled="animationId" type="range" min="1" max="5">
         <br>
         <label>Animation speed: {{ animationSpeed }} sec.</label>
@@ -28,7 +28,9 @@
             min="0"
             :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
           <p>Date / time: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
-          <button v-if="!animationId" class="animation-control-button" @click="startAnimation">{{currentHeatmapIndex > 0 ? "Resume" : "Start"}}</button>
+          <button v-if="!animationId" class="animation-control-button" @click="startAnimation">{{ currentHeatmapIndex > 0
+            ?
+            "Resume" : "Start" }}</button>
           <button v-if="animationId" class="animation-control-button" @click="stopAnimation">Stop</button>
           <br>
           <br>
@@ -90,17 +92,20 @@ export default {
     }
   },
   methods: {
-    drawStations() {
-
+    initialize() {
+      this.initStations();
+      this.drawHeatmap();
+    },
+    initStations() {
       // Commented out bc the dataset is only for 6 sensors & this function fetches all sensor points
 
       //provider.fetchStationPoints().then(() => {
-      //  provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
+      //  provider.convertPointsToCesiumDataSource();
+      //  provider.drawStationPoints();
       //});
 
-      provider.getStationPointsForDataset();
-      provider.drawStationPoints(provider.getPointsAsCesiumDataSource());
-      this.$store.commit('heatmap/showStations');
+      provider.fetchStationPointsForDataset();
+      provider.convertPointsToCesiumDataSource();
     },
     drawHeatmap() {
       this.isLoading = true;
@@ -114,6 +119,10 @@ export default {
         this.$store.commit('heatmap/showHeatmap');
         this.isLoading = false;
       }, 100)
+    },
+    toggleStations() {
+      this.showingStations ? provider.hideStationPoints() : provider.drawStationPoints();
+      this.$store.commit('heatmap/showStations', !this.showingStations);
     },
     changeHeatmapCanvas(changedByUser) {
       const heatmapAmount = document.getElementById('heatmap-container-wrapper').children.length - 1;
