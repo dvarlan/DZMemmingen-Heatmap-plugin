@@ -8,7 +8,7 @@ print("Starte Konvertierung...")
 raw_df = pd.read_csv('inputData.csv', skiprows=1)
 raw_df.columns = ['Sensorname', 'Wert', 'Zeitstempel']
 
-# Temperaturwerte auf eine Nachkommastelle runden & Datumsspalte in korrekten Typ konvertieren
+# Temperaturwerte auf zwei Nachkommastelle runden & Datumsspalte in korrekten Typ konvertieren
 raw_df.Wert = raw_df.Wert.round(decimals=2).astype(float)
 raw_df['Zeitstempel'] = pd.to_datetime(raw_df['Zeitstempel'])
 
