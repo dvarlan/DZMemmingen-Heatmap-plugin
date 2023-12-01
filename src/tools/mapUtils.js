@@ -1,4 +1,4 @@
-export default class util {
+export default class mapUtils {
 
     // Für einen Buffer der größe 50
     static bufferedBoundingBox = {

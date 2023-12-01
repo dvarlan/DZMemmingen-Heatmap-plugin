@@ -1,4 +1,4 @@
-export default class dateTools {
+export default class dateUtils {
 
     static getInclusiveDaysBetweenDates(startDate, endDate) {
         const diffInMs = new Date(endDate) - new Date(startDate);
