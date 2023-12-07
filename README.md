@@ -9,7 +9,7 @@ After cloning the Repo run the following commands in the projects root directory
 npm install
 ```
 
-### Serve the plugin
+## Serve the plugin
 ```
 npm run serve
 ```
