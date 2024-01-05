@@ -15,7 +15,7 @@ export default class dataService {
 
         const numberOfDays = dateUtils.getInclusiveDaysBetweenDates(vcs.ui.store.getters['heatmap/getStartDate'], vcs.ui.store.getters['heatmap/getEndDate']);
         this.backgroundDataFilePath = numberOfDays === 1 ? DWD_HOURLY_FILE_PATH : DWD_DAILY_FILE_PATH;
-        this.mode = numberOfDays === 1 ? 'day' : 'default';
+        this.mode = numberOfDays === 1 ? 'hours' : 'days';
         vcs.ui.store.commit('heatmap/setMode', this.mode);
     }
 
@@ -42,13 +42,13 @@ export default class dataService {
     }
 
     getSensorDataForTimeframe() {
-        if (this.mode === 'day') {
+        if (this.mode === 'hours') {
             this.sensorData.forEach(entry => {
                 if (entry.timestamp.includes(vcs.ui.store.getters['heatmap/getStartDate'])) {
                     this.sensorDataForTimeframe.push(entry);
                 }
             });
-        } else if (this.mode === 'default') {
+        } else if (this.mode === 'days') {
             this.sensorData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
                 if (currentDate >= new Date(vcs.ui.store.getters['heatmap/getStartDate']) && currentDate <= new Date(vcs.ui.store.getters['heatmap/getEndDate'])) {
@@ -60,13 +60,13 @@ export default class dataService {
     }
 
     getBackgroundDataForTimeframe() {
-        if (this.mode === 'day') {
+        if (this.mode === 'hours') {
             this.backgroundData.forEach(entry => {
                 if (entry.timestamp.includes(vcs.ui.store.getters['heatmap/getStartDate'])) {
                     this.backgroundDataForTimeframe.push(entry);
                 }
             });
-        } else if (this.mode === 'default') {
+        } else if (this.mode === 'days') {
             this.backgroundData.forEach(entry => {
                 const currentDate = new Date(entry.timestamp);
                 if (currentDate >= new Date(vcs.ui.store.getters['heatmap/getStartDate']) && currentDate <= new Date(vcs.ui.store.getters['heatmap/getEndDate'])) {

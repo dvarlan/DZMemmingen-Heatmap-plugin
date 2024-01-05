@@ -28,7 +28,7 @@
           <h3>Animation controls</h3>
           <input v-model="currentHeatmapIndex" @change="changeToSelectedCanvas" :disabled="animationId" type="range"
             min="0"
-            :max="this.$store.getters['heatmap/getMode'] === 'default' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
+            :max="this.$store.getters['heatmap/getMode'] === 'days' ? this.$store.getters['heatmap/getSensorData'].length - 1 : 23">
           <p>Date / time: {{ getLabelForIndex(currentHeatmapIndex) }}</p>
           <button v-if="!animationId" class="animation-control-button" @click="startAnimation">{{ currentHeatmapIndex > 0
             ?
@@ -112,11 +112,10 @@ export default {
     drawHeatmap() {
       this.isLoading = true;
       window.setTimeout(() => {
-        myheatmapProvider.createHeatmapContainers();
-        if (this.$store.getters['heatmap/getMode'] === 'day') {
-          myheatmapProvider.createHeatmapsForDays();
+        if (this.$store.getters['heatmap/getMode'] === 'hours') {
+          myheatmapProvider.createHeatmapsForHours();
         } else {
-          myheatmapProvider.createHeatmapsForDefault();
+          myheatmapProvider.createHeatmapsForDays();
         }
         this.$store.commit('heatmap/showHeatmap');
         this.isLoading = false;
@@ -128,7 +127,7 @@ export default {
     },
     changeHeatmapCanvas(changedByUser) {
       const heatmapAmount = document.getElementById('heatmap-container-wrapper').children.length - 1;
-      myheatmapProvider.changeToNextHeatmap();
+      myheatmapProvider.updateCurrentHeatmap();
       if (parseInt(this.currentHeatmapIndex) === heatmapAmount && changedByUser) {
         this.currentHeatmapIndex = heatmapAmount;
       } else if (parseInt(this.currentHeatmapIndex) === heatmapAmount) {

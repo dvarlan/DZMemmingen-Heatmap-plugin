@@ -91,7 +91,7 @@ export default {
                     service.getBackgroundDataForTimeframe();
                 }
 
-                if (this.$store.getters['heatmap/getMode'] === 'day') {
+                if (this.$store.getters['heatmap/getMode'] === 'hours') {
                     service.getMinValueForTimeframeDay();
                     service.getMaxValueForTimeframeDay();
                 } else {

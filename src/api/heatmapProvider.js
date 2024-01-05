@@ -8,24 +8,25 @@ const framework = vcs.vcm.Framework.getInstance();
 export default class heatmapProvider {
 
     constructor() {
-        this.canvasHeight = 1800;
-        this.canvasWidth = 2400;
-        this.rawHeatmapBoundingBox = {
+        // Hardcoded here can be provided by a config object in the future
+
+        this.canvasHeight = 1800; // Fixed value matching most screen sizes, further step: automatically detect best value for each screen
+        this.canvasWidth = 2400; // Fixed value matching most screen sizes, further step: automatically detect best value for each screen
+        this.rawHeatmapBoundingBox = { // Geographical area for the heatmap, in this case Memmingen, further step: detect area by data and add offset
             west: 10.165426272431576,
             south: 47.97753412328743,
             east: 10.200222844460304,
             north: 47.990433576113986,
         };
-        this.mode = '';
-        this.data = [];
-        this.heatmapData = [];
+        this.mode = ''; // Possible values: "hours", "days"
+        this.sensorData = []; // Raw Sensordata from JSON file, further step: provided by REST API
         this.heatmapLayer = null;
-        this.backgroundBufferSize = 100;
-        this.backgroundDensity = 47;
-        this.backgroundHeightOffset = 550;
-        this.backgroundWidthOffset = 900;
-        this.currentTimestampIndex = 0;
-        this.heatmapConfig = {
+        this.backgroundBufferSize = 100; // Buffersize in px around the sensor points where the background value gets interpolatet with the sensor value
+        this.backgroundDensity = 47; // Distance between background value points in px provided to heatmap.js
+        this.backgroundHeightOffset = 550; // Inner offset for the background value, further step: detect from data
+        this.backgroundWidthOffset = 900; // Inner offset for the background value, further step: detect from data
+        this.currentTimestampIndex = 0; // Index for switching through heatamps, starts at first heatmap
+        this.heatmapConfig = { // Heatmap.js config object see: https://www.patrick-wied.at/static/heatmapjs/docs.html#h337-create
             radius: 70,
             maxOpacity: 0.6,
             minOpacity: 0,
@@ -33,9 +34,15 @@ export default class heatmapProvider {
         };
     }
 
-    createHeatmapContainers() {
+    /**
+     * Creates the div elements for the heatmap canvas elements with naming convention to be
+     * referenced when switching the heatmaps. 
+     */
+    createHeatmapContainers_() {
+        this.clear();
+
         let heatmapContainerWrapper = document.getElementById('heatmap-container-wrapper');
-        this.data = vcs.ui.store.getters['heatmap/getSensorData'];
+        this.sensorData = vcs.ui.store.getters['heatmap/getSensorData'];
         this.mode = vcs.ui.store.getters['heatmap/getMode'];
 
         if (!heatmapContainerWrapper) {
@@ -44,17 +51,17 @@ export default class heatmapProvider {
             document.body.appendChild(heatmapContainerWrapper);
         }
 
-        if (this.mode === 'day') {
-            // Name: Timestamp + Uhrzeit -> '2023-01-01 00:00:00'
+        if (this.mode === 'hours') {
+            // Name: Timestamp -> '2023-01-01 00:00:00'
             for (let hour = 0; hour < 24; hour++) {
                 const heatmapContainer = document.createElement("div");
-                heatmapContainer.setAttribute('id', dateUtils.createLableFromDateAndHour(this.data[0].timestamp, hour));
+                heatmapContainer.setAttribute('id', dateUtils.createLableFromDateAndHour(this.sensorData[0].timestamp, hour));
                 heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
                 heatmapContainerWrapper.appendChild(heatmapContainer);
             }
-        } else if (this.mode === 'default') {
-            // Name: Timestamp -> '2023-01-01'
-            for (const day of this.data) {
+        } else if (this.mode === 'days') {
+            // Name: Date -> '2023-01-01'
+            for (const day of this.sensorData) {
                 const heatmapContainer = document.createElement("div");
                 heatmapContainer.setAttribute('id', day.timestamp);
                 heatmapContainer.setAttribute('style', `height: ${this.canvasHeight}px; width: ${this.canvasWidth}px; z-index: 1337; pointer-events: none; display: none;`);
@@ -63,10 +70,14 @@ export default class heatmapProvider {
         }
     }
 
-    createHeatmapsForDays() {
+    /**
+     * Uses heatmap.js to create the heatmap canvases.
+     */
+    createHeatmapsForHours() {
+        this.createHeatmapContainers_();
         for (let hour = 0; hour < 24; hour++) {
             let heatmapCanvas = h337.create({
-                container: document.getElementById(dateUtils.createLableFromDateAndHour(this.data[0].timestamp, hour)),
+                container: document.getElementById(dateUtils.createLableFromDateAndHour(this.sensorData[0].timestamp, hour)),
                 radius: this.heatmapConfig.radius,
                 maxOpacity: this.heatmapConfig.maxOpacity,
                 minOpacity: this.heatmapConfig.minOpacity,
@@ -76,13 +87,17 @@ export default class heatmapProvider {
             heatmapCanvas.setData({
                 min: vcs.ui.store.getters['heatmap/getMinValue'],
                 max: vcs.ui.store.getters['heatmap/getMaxValue'],
-                data: this.convertDataForHeatmapDay(hour)
+                data: this.convertDataForHeatmapHour_(hour)
             });
         }
     }
 
-    createHeatmapsForDefault() {
-        for (let day = 0; day < this.data.length; day++) {
+    /**
+     * Uses heatmap.js to create the heatmap canvases.
+     */
+    createHeatmapsForDays() {
+        this.createHeatmapContainers_();
+        for (let day = 0; day < this.sensorData.length; day++) {
             let heatmapCanvas = h337.create({
                 container: document.getElementById('heatmap-container-wrapper').children[day],
                 radius: this.heatmapConfig.radius,
@@ -94,14 +109,20 @@ export default class heatmapProvider {
             heatmapCanvas.setData({
                 min: vcs.ui.store.getters['heatmap/getMinValue'],
                 max: vcs.ui.store.getters['heatmap/getMaxValue'],
-                data: this.convertDataForHeatmapDefault(day)
+                data: this.convertDataForHeatmapDay_(day)
             });
         }
     }
 
-    addHeatmapBackgroundValueDay(currentHour) {
+    /**
+     * Adds the background value to the heatmap. Interpolates the background values if they are in backgroundBufferSize around the sensors.
+     * @param {number} currentHour 
+     * @param {array} heatmapData 
+     * @returns {array} heatmapData
+     */
+    addHeatmapBackgroundValueHour_(currentHour, heatmapData) {
         let backgroundValue = null;
-        let stationBuffers = this.heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
+        let stationBuffers = heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
         vcs.ui.store.getters['heatmap/getBackgroundData'].forEach(entry => {
             if (dateUtils.getTimeForTimestamp(entry.timestamp, 'T') === dateUtils.createHourLableFromNumber(currentHour)) {
                 backgroundValue = entry.value;
@@ -115,7 +136,7 @@ export default class heatmapProvider {
                     y: j,
                     value: parseFloat(backgroundValue).toFixed(1)
                 };
-                // Only perform the check for points inside of a buffered BoundingBox around the stations
+                // Only perform the check for points inside of a buffered BoundingBox around the sensors
                 if (mapUtils.isPointInBufferdBoundingBox(point)) {
                     for (const buffer of stationBuffers) {
                         if (mapUtils.isPointInBuffer(point, buffer)) {
@@ -123,14 +144,21 @@ export default class heatmapProvider {
                         }
                     }
                 }
-                this.heatmapData.push(point);
+                heatmapData.push(point);
             }
         }
+        return heatmapData;
     }
 
-    addHeatmapBackgroundValueDefault(currentDayIndex) {
+    /**
+     * Adds the background value to the heatmap. Interpolates the background values if they are in backgroundBufferSize around the sensors.
+     * @param {number} currentDayIndex 
+     * @param {array} heatmapData 
+     * @returns {array} heatmapData
+     */
+    addHeatmapBackgroundValueDay_(currentDayIndex, heatmapData) {
         const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
-        let stationBuffers = this.heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
+        let stationBuffers = heatmapData.map(station => mapUtils.createBufferForPoint(station, this.backgroundBufferSize));
 
         for (let i = this.backgroundWidthOffset; i < this.canvasWidth - this.backgroundWidthOffset; i += this.backgroundDensity) {
             for (let j = this.backgroundHeightOffset; j < this.canvasHeight - this.backgroundHeightOffset; j += this.backgroundDensity) {
@@ -147,18 +175,24 @@ export default class heatmapProvider {
                         }
                     }
                 }
-                this.heatmapData.push(point);
+                heatmapData.push(point);
             }
         }
+        return heatmapData;
     }
 
-    convertDataForHeatmapDay(currentHour) {
-        this.heatmapData = [];
-        this.data[0].data.forEach(entry => {
+    /**
+     * Creates heatmap data for heatmap.js using the raw sensor data.
+     * @param {number} currentHour 
+     * @returns {array} heatmapData
+     */
+    convertDataForHeatmapHour_(currentHour) {
+        const heatmapData = [];
+        this.sensorData[0].data.forEach(entry => {
             if (entry.Uhrzeit === dateUtils.createHourLableFromNumber(currentHour) && entry.data.length > 0) {
                 entry.data.forEach(station => {
                     const convertedCoordinates = mapUtils.covertLonLatToXY(station.Lat, station.Lon, this.rawHeatmapBoundingBox, this.canvasWidth, this.canvasHeight);
-                    this.heatmapData.push({
+                    heatmapData.push({
                         x: convertedCoordinates.x,
                         y: convertedCoordinates.y,
                         value: station.Wert
@@ -167,27 +201,35 @@ export default class heatmapProvider {
             }
         });
         if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
-            this.addHeatmapBackgroundValueDay(currentHour);
+            this.addHeatmapBackgroundValueHour_(currentHour, heatmapData);
         }
-        return this.heatmapData;
+        return heatmapData;
     }
 
-    convertDataForHeatmapDefault(currentDayIndex) {
-        this.heatmapData = [];
+    /**
+     * Creates heatmap data for heatmap.js using the raw sensor data.
+     * @param {number} currentDayIndex 
+     * @returns {array} heatmapData
+     */
+    convertDataForHeatmapDay_(currentDayIndex) {
+        const heatmapData = [];
         let currentEntryData = [];
-        this.data[currentDayIndex].data.forEach(entry => {
+        this.sensorData[currentDayIndex].data.forEach(entry => {
             if (entry.data.length > 0) {
                 entry.data.forEach(item => currentEntryData.push(item));
             }
         });
-        this.heatmapData.push(...heatmapCalcUtils.calculateMeanValueForStations(currentEntryData));
+        heatmapData.push(...heatmapCalcUtils.calculateMeanValueForStations(currentEntryData));
         if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
-            this.addHeatmapBackgroundValueDefault(currentDayIndex);
+            this.addHeatmapBackgroundValueDay_(currentDayIndex, heatmapData);
         }
-        return this.heatmapData;
+        return heatmapData;
     }
 
-    changeToNextHeatmap() {
+    /**
+     * Changes the visible heatmap in the map to the specified by currentTimestampIndex.
+     */
+    updateCurrentHeatmap() {
         const map = framework.getActiveMap();
         map.getScene().imageryLayers.remove(this.heatmapLayer);
         const currentLabel = document.getElementById('heatmap-container-wrapper').children[this.currentTimestampIndex].getAttribute('id');
@@ -213,6 +255,9 @@ export default class heatmapProvider {
         }
     }
 
+    /**
+     * Removes the heatmap from the map, clears the DOM and resets currentTimestampIndex to 0.
+     */
     clear() {
         let heatmapContainer = document.getElementById("heatmap-container-wrapper");
         if (heatmapContainer) {
