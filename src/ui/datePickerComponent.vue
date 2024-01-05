@@ -92,11 +92,11 @@ export default {
                 }
 
                 if (this.$store.getters['heatmap/getMode'] === 'hours') {
-                    service.getMinValueForTimeframeDay();
-                    service.getMaxValueForTimeframeDay();
+                    service.getMinValueForTimeframeHours();
+                    service.getMaxValueForTimeframeHours();
                 } else {
-                    service.getMinValueForTimeframeDefault();
-                    service.getMaxValueForTimeframeDefault();
+                    service.getMinValueForTimeframeDays();
+                    service.getMaxValueForTimeframeDays();
                 }
                 this.selectionSubmitted = true;
                 this.$emit('selectionChanged');

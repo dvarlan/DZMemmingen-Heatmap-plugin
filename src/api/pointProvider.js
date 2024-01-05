@@ -10,6 +10,9 @@ export default class pointProvider {
         this.cesiumDataSource = null;
     }
 
+    /**
+     * Fetches the lat and lon position for all active Stations.
+     */
     async fetchStationPoints() {
         const response = await fetch(requestUrl);
         const responseJson = await response.json();
@@ -23,7 +26,9 @@ export default class pointProvider {
         });
     }
 
-    // This only gets the positions for the 6 Stations from the dataset
+    /**
+     * Fetches the lat and lon position for the 6 Stations from the JSON Dataset.
+     */
     fetchStationPointsForDataset() {
         heatmapCalcUtils.stationMappings.forEach(station => {
             this.stationPositions.push({
@@ -33,6 +38,9 @@ export default class pointProvider {
         });
     }
 
+    /**
+     * Converts the stationPositions to cesiumDataSource.
+     */
     convertPointsToCesiumDataSource() {
         this.cesiumDataSource = new Cesium.CustomDataSource('Station Points');
 

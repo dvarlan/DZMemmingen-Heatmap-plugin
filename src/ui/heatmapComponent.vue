@@ -57,7 +57,7 @@
 </template>
 <script>
 import pointProvider from '../api/pointProvider';
-import DatePickerComponent from './datePickerComponent.vue';
+import DatePickerComponent from './datePickerComponent';
 import heatmapProvider from '../api/heatmapProvider';
 
 let myheatmapProvider = new heatmapProvider();
@@ -99,7 +99,7 @@ export default {
       this.drawHeatmap();
     },
     initStations() {
-      // Commented out bc the dataset is only for 6 sensors & this function fetches all sensor points
+      // Commented out bc the dataset is only for 6 sensors & this function fetches all available sensor points
 
       //provider.fetchStationPoints().then(() => {
       //  provider.convertPointsToCesiumDataSource();

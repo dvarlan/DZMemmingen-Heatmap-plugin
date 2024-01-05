@@ -19,6 +19,9 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setMode', this.mode);
     }
 
+    /**
+     * Fetches the data for backgroundData and sensorData from the JSON files in the correct format.
+     */
     async parseData() {
         if (vcs.ui.store.getters['heatmap/usingBackgroundValue']) {
             const backgroundResponse = await fetch(this.backgroundDataFilePath);
@@ -41,6 +44,9 @@ export default class dataService {
         });
     }
 
+    /**
+     * Commits the sensorData for the user-selected timeframe into the store.
+     */
     getSensorDataForTimeframe() {
         if (this.mode === 'hours') {
             this.sensorData.forEach(entry => {
@@ -59,6 +65,9 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setSensorData', Object.freeze(this.sensorDataForTimeframe));
     }
 
+    /**
+     * Commits the backgroundData for the user-selected timeframe into the store.
+     */
     getBackgroundDataForTimeframe() {
         if (this.mode === 'hours') {
             this.backgroundData.forEach(entry => {
@@ -77,7 +86,10 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setBackgroundData', Object.freeze(this.backgroundDataForTimeframe));
     }
 
-    getMinValueForTimeframeDay() {
+    /**
+     * Commits the minimum value from the sensor and background data into the store.
+     */
+    getMinValueForTimeframeHours() {
         let result = Infinity;
         for (const entry of this.sensorDataForTimeframe[0].data) {
             if (entry.data.length > 0) {
@@ -96,7 +108,10 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
     }
 
-    getMaxValueForTimeframeDay() {
+    /**
+     * Commits the maximum value from the sensor and background data into the store.
+     */
+    getMaxValueForTimeframeHours() {
         let result = -Infinity;
         for (const entry of this.sensorDataForTimeframe[0].data) {
             if (entry.data.length > 0) {
@@ -115,7 +130,11 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setMaxValue', result.toFixed(1));
     }
 
-    getMeanValuesForTimeframeDefault() {
+    /**
+     * Returns the mean values for each station / sensor for each day of the user selected timeframe.
+     * @returns {array} result
+     */
+    getMeanValuesForTimeframeDays_() {
         let result = [];
         for (const day of this.sensorDataForTimeframe) {
             let currentData = [];
@@ -129,8 +148,11 @@ export default class dataService {
         return result;
     }
 
-    getMinValueForTimeframeDefault() {
-        const meanValues = this.getMeanValuesForTimeframeDefault();
+    /**
+     * Commits the minimum value from the sensor and background data into the store.
+     */
+    getMinValueForTimeframeDays() {
+        const meanValues = this.getMeanValuesForTimeframeDays_();
         let result = Infinity;
         meanValues.forEach(entry => {
             result = Math.min(result, entry.value);
@@ -146,8 +168,11 @@ export default class dataService {
         vcs.ui.store.commit('heatmap/setMinValue', result.toFixed(1));
     }
 
-    getMaxValueForTimeframeDefault() {
-        const meanValues = this.getMeanValuesForTimeframeDefault();
+    /**
+     * Commits the maximum value from the sensor and background data into the store.
+     */
+    getMaxValueForTimeframeDays() {
+        const meanValues = this.getMeanValuesForTimeframeDays_();
         let result = -Infinity;
         meanValues.forEach(entry => {
             result = Math.max(result, entry.value);
