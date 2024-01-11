@@ -117,8 +117,8 @@ export default class heatmapProvider {
     /**
      * Adds the background value to the heatmap. Interpolates the background values if they are in backgroundBufferSize around the sensors.
      * @param {number} currentHour 
-     * @param {array} heatmapData 
-     * @returns {array} heatmapData
+     * @param {Array} heatmapData 
+     * @returns {Array} heatmapData
      */
     addHeatmapBackgroundValueHour_(currentHour, heatmapData) {
         let backgroundValue = null;
@@ -153,8 +153,8 @@ export default class heatmapProvider {
     /**
      * Adds the background value to the heatmap. Interpolates the background values if they are in backgroundBufferSize around the sensors.
      * @param {number} currentDayIndex 
-     * @param {array} heatmapData 
-     * @returns {array} heatmapData
+     * @param {Array} heatmapData 
+     * @returns {Array} heatmapData
      */
     addHeatmapBackgroundValueDay_(currentDayIndex, heatmapData) {
         const backgroundValue = vcs.ui.store.getters['heatmap/getBackgroundData'][currentDayIndex].value;
@@ -184,7 +184,7 @@ export default class heatmapProvider {
     /**
      * Creates heatmap data for heatmap.js using the raw sensor data.
      * @param {number} currentHour 
-     * @returns {array} heatmapData
+     * @returns {Array} heatmapData
      */
     convertDataForHeatmapHour_(currentHour) {
         const heatmapData = [];
@@ -209,7 +209,7 @@ export default class heatmapProvider {
     /**
      * Creates heatmap data for heatmap.js using the raw sensor data.
      * @param {number} currentDayIndex 
-     * @returns {array} heatmapData
+     * @returns {Array} heatmapData
      */
     convertDataForHeatmapDay_(currentDayIndex) {
         const heatmapData = [];

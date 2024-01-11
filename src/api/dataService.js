@@ -132,7 +132,7 @@ export default class dataService {
 
     /**
      * Returns the mean values for each station / sensor for each day of the user selected timeframe.
-     * @returns {array} result
+     * @returns {Array} result
      */
     getMeanValuesForTimeframeDays_() {
         let result = [];
